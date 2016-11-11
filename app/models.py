@@ -11,10 +11,9 @@ from sqlalchemy import func
 from sqlalchemy.dialects.postgresql import JSON, INTERVAL
 from sqlalchemy.ext.declarative import declared_attr
 from sqlalchemy.ext.hybrid import hybrid_property
-from sqlalchemy.orm import validates, backref
+from sqlalchemy.orm import validates, backref, mapper
 from sqlalchemy.orm.session import Session
-from sqlalchemy.sql.expression import case as sql_case
-from sqlalchemy.sql.expression import cast as sql_cast
+from sqlalchemy.sql.expression import case as sql_case, cast as sql_cast, select as sql_select
 from sqlalchemy.types import String
 from sqlalchemy import Sequence
 from sqlalchemy_utils import generic_relationship
@@ -333,19 +332,7 @@ class SupplierFramework(db.Model):
     supplier = db.relationship(Supplier, lazy='joined', innerjoin=True)
     framework = db.relationship(Framework, lazy='joined', innerjoin=True)
 
-    current_framework_agreement = db.relationship(
-        lambda: FrameworkAgreement,
-        lazy="subquery",
-        order_by=lambda: desc(FrameworkAgreement.most_recent_signature_time),
-        primaryjoin=lambda: and_(
-            SupplierFramework.supplier_id == FrameworkAgreement.supplier_id,
-            SupplierFramework.framework_id == FrameworkAgreement.framework_id,
-            FrameworkAgreement.status != "draft"
-        ),
-        distinct_target_key=True,
-        uselist=False,
-        viewonly=True,
-    )
+    # vvvv current_framework_agreement defined further down (after FrameworkAgreement) vvvv
 
     @validates('declaration')
     def validates_declaration(self, key, value):
@@ -587,6 +574,29 @@ class FrameworkAgreement(db.Model):
             ),
             'countersignedAgreementPath': self.countersigned_agreement_path
         })
+
+
+# a non_primary mapper representing the "current" framework agreement of each SupplierFramework
+SupplierFramework._CurrentFrameworkAgreement = mapper(
+    FrameworkAgreement,
+    sql_select([FrameworkAgreement]).where(
+        FrameworkAgreement.status != "draft",
+    ).order_by(
+        FrameworkAgreement.supplier_id,
+        FrameworkAgreement.framework_id,
+        desc(FrameworkAgreement.most_recent_signature_time),
+    ).distinct(
+        FrameworkAgreement.supplier_id,
+        FrameworkAgreement.framework_id,
+    ).alias(),
+    non_primary=True,
+)
+SupplierFramework.current_framework_agreement = db.relationship(
+    SupplierFramework._CurrentFrameworkAgreement,
+    lazy="joined",
+    uselist=False,
+    viewonly=True,
+)
 
 
 class User(db.Model):
