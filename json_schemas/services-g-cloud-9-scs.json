@@ -2,61 +2,266 @@
   "$schema": "http://json-schema.org/schema#",
   "additionalProperties": false,
   "properties": {
-    "educationPricing": {
-      "type": "boolean"
-    },
-    "incidentEscalation": {
-      "type": "boolean"
-    },
-    "minimumContractPeriod": {
-      "enum": [
-        "Hour",
-        "Day",
-        "Month",
-        "Year",
-        "Other"
-      ]
-    },
-    "priceInterval": {
-      "enum": [
-        "",
-        "Second",
-        "Minute",
-        "Hour",
-        "Day",
-        "Week",
-        "Month",
-        "Quarter",
-        "6 months",
-        "Year"
-      ]
-    },
-    "priceMax": {
-      "pattern": "^$|^\\d{1,15}(?:\\.\\d{1,5})?$",
+    "accessSecurityDetails": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
       "type": "string"
     },
-    "priceMin": {
-      "pattern": "^\\d{1,15}(?:\\.\\d{1,5})?$",
+    "analyticsApplicationMetrics": {
+      "type": "boolean"
+    },
+    "analyticsApplicationMetricsDetail": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
       "type": "string"
     },
-    "priceUnit": {
-      "enum": [
-        "Unit",
-        "Person",
-        "Licence",
-        "User",
-        "Device",
-        "Instance",
-        "Server",
-        "Virtual machine",
-        "Transaction",
-        "Megabyte",
-        "Gigabyte",
-        "Terabyte"
-      ]
+    "analyticsNetworkMetrics": {
+      "type": "boolean"
     },
-    "pricingDocumentURL": {
-      "format": "uri",
+    "analyticsNetworkMetricsDetail": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
+      "type": "string"
+    },
+    "analyticsOther": {
+      "type": "boolean"
+    },
+    "analyticsOtherDetail": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
+      "type": "string"
+    },
+    "cloudBackupManual": {
+      "type": "boolean"
+    },
+    "cloudBackupManualDetails": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
+      "type": "string"
+    },
+    "cloudBackupScheduled": {
+      "type": "boolean"
+    },
+    "cloudBackupScheduledDetails": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
+      "type": "string"
+    },
+    "cloudBackupSupport": {
+      "type": "boolean"
+    },
+    "cloudBackupSupportDetails": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
+      "type": "string"
+    },
+    "cloudDisasterDetails": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
+      "type": "string"
+    },
+    "cloudRecoverSelfservice": {
+      "type": "boolean"
+    },
+    "cloudRecoverSelfserviceDetails": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
+      "type": "string"
+    },
+    "cloudRecoverSupport": {
+      "type": "boolean"
+    },
+    "cloudRecoverSupportDetails": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
+      "type": "string"
+    },
+    "cloudScaleAutomatic": {
+      "type": "boolean"
+    },
+    "cloudScaleAutomaticDetails": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
+      "type": "string"
+    },
+    "cloudScaleSelfservice": {
+      "type": "boolean"
+    },
+    "cloudScaleSelfserviceDetails": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
+      "type": "string"
+    },
+    "cloudScaleSupport": {
+      "type": "boolean"
+    },
+    "cloudScaleSupportDetails": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
+      "type": "string"
+    },
+    "dataCentreSecurityDetails": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
+      "type": "string"
+    },
+    "dataExtraction": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
+      "type": "string"
+    },
+    "devolved": {
+      "type": "boolean"
+    },
+    "devolvedDetails": {
+      "items": {
+        "maxLength": 100,
+        "pattern": "^(?:\\S+\\s+){0,9}\\S+$",
+        "type": "string"
+      },
+      "maxItems": 10,
+      "minItems": 1,
+      "type": "array"
+    },
+    "disposeEquipmentDetails": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
+      "type": "string"
+    },
+    "interfaceApi": {
+      "type": "boolean"
+    },
+    "interfaceApiDetail": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
+      "type": "string"
+    },
+    "interfaceCommandLine": {
+      "type": "boolean"
+    },
+    "interfaceCommandLineDetail": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
+      "type": "string"
+    },
+    "interfaceOther": {
+      "type": "boolean"
+    },
+    "interfaceOtherDetail": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
+      "type": "string"
+    },
+    "interfaceWeb": {
+      "type": "boolean"
+    },
+    "interfaceWebDetail": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
+      "type": "string"
+    },
+    "managePhysicalResilienceDetails": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
+      "type": "string"
+    },
+    "offboarding": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
+      "type": "string"
+    },
+    "onboarding": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
+      "type": "string"
+    },
+    "penTestingFrequency": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
+      "type": "string"
+    },
+    "protectDataAtRestDetails": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
+      "type": "string"
+    },
+    "provisionApi": {
+      "type": "boolean"
+    },
+    "provisionApiDetails": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
+      "type": "string"
+    },
+    "provisionCommandline": {
+      "type": "boolean"
+    },
+    "provisionCommandlineDetails": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
+      "type": "string"
+    },
+    "provisionOther": {
+      "type": "boolean"
+    },
+    "provisionOtherDetails": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
+      "type": "string"
+    },
+    "provisionWeb": {
+      "type": "boolean"
+    },
+    "provisionWebDetails": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
+      "type": "string"
+    },
+    "sanatiseDataDetails": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
+      "type": "string"
+    },
+    "secureServiceAdministrationDetails": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
+      "type": "string"
+    },
+    "separationOfUsersDetails": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
       "type": "string"
     },
     "serviceBenefits": {
@@ -69,8 +274,10 @@
       "minItems": 1,
       "type": "array"
     },
-    "serviceDefinitionDocumentURL": {
-      "format": "uri",
+    "serviceConstraints": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
       "type": "string"
     },
     "serviceFeatures": {
@@ -109,81 +316,118 @@
       "type": "array",
       "uniqueItems": true
     },
-    "sfiaRateDocumentURL": {
-      "format": "uri",
-      "type": "string"
+    "supportReport": {
+      "type": "boolean"
     },
-    "supportAvailability": {
-      "maxLength": 200,
+    "supportReportDetail": {
+      "maxLength": 500,
       "minLength": 1,
-      "pattern": "^(?:\\S+\\s+){0,19}\\S+$",
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
       "type": "string"
     },
-    "supportForThirdParties": {
+    "supportTypesEmail": {
       "type": "boolean"
     },
-    "supportResponseTime": {
-      "maxLength": 200,
+    "supportTypesEmailDetail": {
+      "maxLength": 500,
       "minLength": 1,
-      "pattern": "^(?:\\S+\\s+){0,19}\\S+$",
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
       "type": "string"
     },
-    "supportTypes": {
-      "items": {
-        "enum": [
-          "Service desk",
-          "Email",
-          "Phone",
-          "Live chat",
-          "Onsite"
-        ]
-      },
-      "maxItems": 5,
-      "minItems": 1,
-      "type": "array",
-      "uniqueItems": true
-    },
-    "terminationCost": {
+    "supportTypesPhone": {
       "type": "boolean"
     },
-    "termsAndConditionsDocumentURL": {
-      "format": "uri",
+    "supportTypesPhoneDetail": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
       "type": "string"
     },
-    "vatIncluded": {
+    "supportTypesWebchat": {
       "type": "boolean"
     },
-    "vendorCertifications": {
-      "items": {
-        "maxLength": 100,
-        "pattern": "^(?:\\S+\\s+){0,9}\\S+$",
-        "type": "string"
-      },
-      "maxItems": 10,
-      "minItems": 0,
-      "type": "array"
+    "supportTypesWebchatDetail": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
+      "type": "string"
+    },
+    "usersAccessAuditInformationDetails": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
+      "type": "string"
     }
   },
   "required": [
-    "educationPricing",
-    "incidentEscalation",
-    "minimumContractPeriod",
-    "priceMin",
-    "priceUnit",
-    "pricingDocumentURL",
+    "accessSecurityDetails",
+    "analyticsApplicationMetrics",
+    "analyticsApplicationMetricsDetail",
+    "analyticsNetworkMetrics",
+    "analyticsNetworkMetricsDetail",
+    "analyticsOther",
+    "analyticsOtherDetail",
+    "cloudBackupManual",
+    "cloudBackupManualDetails",
+    "cloudBackupScheduled",
+    "cloudBackupScheduledDetails",
+    "cloudBackupSupport",
+    "cloudBackupSupportDetails",
+    "cloudDisasterDetails",
+    "cloudRecoverSelfservice",
+    "cloudRecoverSelfserviceDetails",
+    "cloudRecoverSupport",
+    "cloudRecoverSupportDetails",
+    "cloudScaleAutomatic",
+    "cloudScaleAutomaticDetails",
+    "cloudScaleSelfservice",
+    "cloudScaleSelfserviceDetails",
+    "cloudScaleSupport",
+    "cloudScaleSupportDetails",
+    "dataCentreSecurityDetails",
+    "dataExtraction",
+    "devolved",
+    "devolvedDetails",
+    "disposeEquipmentDetails",
+    "interfaceApi",
+    "interfaceApiDetail",
+    "interfaceCommandLine",
+    "interfaceCommandLineDetail",
+    "interfaceOther",
+    "interfaceOtherDetail",
+    "interfaceWeb",
+    "interfaceWebDetail",
+    "managePhysicalResilienceDetails",
+    "offboarding",
+    "onboarding",
+    "penTestingFrequency",
+    "protectDataAtRestDetails",
+    "provisionApi",
+    "provisionApiDetails",
+    "provisionCommandline",
+    "provisionCommandlineDetails",
+    "provisionOther",
+    "provisionOtherDetails",
+    "provisionWeb",
+    "provisionWebDetails",
+    "sanatiseDataDetails",
+    "secureServiceAdministrationDetails",
+    "separationOfUsersDetails",
     "serviceBenefits",
-    "serviceDefinitionDocumentURL",
+    "serviceConstraints",
     "serviceFeatures",
     "serviceName",
     "serviceSummary",
     "serviceTypes",
-    "supportAvailability",
-    "supportForThirdParties",
-    "supportResponseTime",
-    "supportTypes",
-    "terminationCost",
-    "termsAndConditionsDocumentURL",
-    "vatIncluded"
+    "supportReport",
+    "supportReportDetail",
+    "supportTypesEmail",
+    "supportTypesEmailDetail",
+    "supportTypesPhone",
+    "supportTypesPhoneDetail",
+    "supportTypesWebchat",
+    "supportTypesWebchatDetail",
+    "usersAccessAuditInformationDetails"
   ],
   "title": "G-Cloud 9 SCS Service Schema",
   "type": "object"

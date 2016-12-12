@@ -2,132 +2,7 @@
   "$schema": "http://json-schema.org/schema#",
   "additionalProperties": false,
   "properties": {
-    "analyticsAvailable": {
-      "type": "boolean"
-    },
-    "apiAccess": {
-      "type": "boolean"
-    },
-    "apiType": {
-      "maxLength": 200,
-      "minLength": 0,
-      "pattern": "^$|(^(?:\\S+\\s+){0,19}\\S+$)",
-      "type": "string"
-    },
-    "auditInformationProvided": {
-      "properties": {
-        "assurance": {
-          "enum": [
-            "Service provider assertion",
-            "Independent validation of assertion"
-          ]
-        },
-        "value": {
-          "enum": [
-            "None",
-            "Data made available",
-            "Data made available by negotiation"
-          ]
-        }
-      },
-      "required": [
-        "value",
-        "assurance"
-      ],
-      "type": "object"
-    },
-    "changeImpactAssessment": {
-      "properties": {
-        "assurance": {
-          "enum": [
-            "Service provider assertion",
-            "Independent validation of assertion"
-          ]
-        },
-        "value": {
-          "type": "boolean"
-        }
-      },
-      "required": [
-        "value",
-        "assurance"
-      ],
-      "type": "object"
-    },
-    "cloudDeploymentModel": {
-      "properties": {
-        "assurance": {
-          "enum": [
-            "Service provider assertion",
-            "Contractual commitment",
-            "Independent validation of assertion"
-          ]
-        },
-        "value": {
-          "enum": [
-            "Public cloud",
-            "Community cloud",
-            "Private cloud",
-            "Hybrid cloud"
-          ]
-        }
-      },
-      "required": [
-        "value",
-        "assurance"
-      ],
-      "type": "object"
-    },
-    "codeLibraryLanguages": {
-      "items": {
-        "maxLength": 100,
-        "pattern": "^(?:\\S+\\s+){0,9}\\S+$",
-        "type": "string"
-      },
-      "maxItems": 10,
-      "minItems": 0,
-      "type": "array"
-    },
-    "dataAtRestProtections": {
-      "properties": {
-        "assurance": {
-          "enum": [
-            "Service provider assertion",
-            "Independent validation of assertion",
-            "Independent testing of implementation",
-            "CESG-assured components"
-          ]
-        },
-        "value": {
-          "items": {
-            "enum": [
-              "CPA Foundation-grade assured components",
-              "FIPS-assured encryption",
-              "Other encryption",
-              "Secure containers, racks or cages",
-              "Physical access control",
-              "No protection"
-            ]
-          },
-          "maxItems": 6,
-          "minItems": 1,
-          "type": "array",
-          "uniqueItems": true
-        }
-      },
-      "required": [
-        "value",
-        "assurance"
-      ],
-      "type": "object"
-    },
-    "dataBackupRecovery": {
-      "type": "boolean"
-    },
-    "dataExtractionRemoval": {
-      "type": "boolean"
-    },
-    "dataManagementLocations": {
+    "accessSecurity": {
       "properties": {
         "assurance": {
           "enum": [
@@ -139,632 +14,11 @@
         "value": {
           "items": {
             "enum": [
-              "UK",
-              "EU",
-              "Other countries with data protection treaties",
-              "Rest of world"
-            ]
-          },
-          "maxItems": 4,
-          "minItems": 1,
-          "type": "array",
-          "uniqueItems": true
-        }
-      },
-      "required": [
-        "value",
-        "assurance"
-      ],
-      "type": "object"
-    },
-    "dataProtectionBetweenUserAndService": {
-      "properties": {
-        "assurance": {
-          "enum": [
-            "Service provider assertion",
-            "Independent validation of assertion",
-            "Independent testing of implementation",
-            "CESG-assured components"
-          ]
-        },
-        "value": {
-          "items": {
-            "enum": [
-              "PSN assured service",
-              "PSN protected service",
-              "CPA Foundation VPN Gateway",
-              "TLS (HTTPS or VPN) version 1.2 or later",
-              "Legacy SSL or TLS (HTTPS or VPN)",
-              "No encryption"
-            ]
-          },
-          "maxItems": 6,
-          "minItems": 1,
-          "type": "array",
-          "uniqueItems": true
-        }
-      },
-      "required": [
-        "value",
-        "assurance"
-      ],
-      "type": "object"
-    },
-    "dataSecureDeletion": {
-      "properties": {
-        "assurance": {
-          "enum": [
-            "Service provider assertion",
-            "Independent validation of assertion",
-            "Independent testing of implementation",
-            "CESG-assured components"
-          ]
-        },
-        "value": {
-          "enum": [
-            "CPA Foundation-grade erasure product",
-            "CESG or CPNI-approved erasure process",
-            "Other secure erasure process",
-            "Other erasure process"
-          ]
-        }
-      },
-      "required": [
-        "value",
-        "assurance"
-      ],
-      "type": "object"
-    },
-    "datacentreLocations": {
-      "properties": {
-        "assurance": {
-          "enum": [
-            "Service provider assertion",
-            "Contractual commitment",
-            "Independent validation of assertion"
-          ]
-        },
-        "value": {
-          "items": {
-            "enum": [
-              "UK",
-              "EU",
-              "Other countries with data protection treaties",
-              "Rest of world"
-            ]
-          },
-          "maxItems": 4,
-          "minItems": 1,
-          "type": "array",
-          "uniqueItems": true
-        }
-      },
-      "required": [
-        "value",
-        "assurance"
-      ],
-      "type": "object"
-    },
-    "datacentreProtectionDisclosure": {
-      "properties": {
-        "assurance": {
-          "enum": [
-            "Service provider assertion",
-            "Contractual commitment",
-            "Independent validation of assertion"
-          ]
-        },
-        "value": {
-          "type": "boolean"
-        }
-      },
-      "required": [
-        "value",
-        "assurance"
-      ],
-      "type": "object"
-    },
-    "datacentreTier": {
-      "enum": [
-        "TIA-942 Tier 1",
-        "TIA-942 Tier 2",
-        "TIA-942 Tier 3",
-        "TIA-942 Tier 4",
-        "Uptime Institute Tier 1",
-        "Uptime Institute Tier 2",
-        "Uptime Institute Tier 3",
-        "Uptime Institute Tier 4",
-        "None of the above"
-      ]
-    },
-    "datacentresEUCode": {
-      "type": "boolean"
-    },
-    "datacentresSpecifyLocation": {
-      "type": "boolean"
-    },
-    "deprovisioningTime": {
-      "maxLength": 200,
-      "minLength": 1,
-      "pattern": "^(?:\\S+\\s+){0,19}\\S+$",
-      "type": "string"
-    },
-    "deviceAccessMethod": {
-      "properties": {
-        "assurance": {
-          "enum": [
-            "Service provider assertion",
-            "Independent validation of assertion"
-          ]
-        },
-        "value": {
-          "items": {
-            "enum": [
-              "Corporate/enterprise devices",
-              "Partner devices",
-              "Unknown devices"
-            ]
-          },
-          "maxItems": 3,
-          "minItems": 1,
-          "type": "array",
-          "uniqueItems": true
-        }
-      },
-      "required": [
-        "value",
-        "assurance"
-      ],
-      "type": "object"
-    },
-    "educationPricing": {
-      "type": "boolean"
-    },
-    "elasticCloud": {
-      "type": "boolean"
-    },
-    "eventMonitoring": {
-      "properties": {
-        "assurance": {
-          "enum": [
-            "Service provider assertion",
-            "Independent validation of assertion"
-          ]
-        },
-        "value": {
-          "type": "boolean"
-        }
-      },
-      "required": [
-        "value",
-        "assurance"
-      ],
-      "type": "object"
-    },
-    "freeOption": {
-      "type": "boolean"
-    },
-    "governanceFramework": {
-      "properties": {
-        "assurance": {
-          "enum": [
-            "Service provider assertion",
-            "Independent validation of assertion"
-          ]
-        },
-        "value": {
-          "type": "boolean"
-        }
-      },
-      "required": [
-        "value",
-        "assurance"
-      ],
-      "type": "object"
-    },
-    "guaranteedResources": {
-      "type": "boolean"
-    },
-    "identityAuthenticationControls": {
-      "properties": {
-        "assurance": {
-          "enum": [
-            "Service provider assertion",
-            "Independent testing of implementation",
-            "CESG-assured components"
-          ]
-        },
-        "value": {
-          "items": {
-            "enum": [
-              "Username and two-factor authentication",
-              "Username and TLS client certificate",
-              "Authentication federation",
-              "Limited access over dedicated link, enterprise or community network",
-              "Username and password",
-              "Username and strong password/passphrase enforcement",
-              "Other mechanism"
-            ]
-          },
-          "maxItems": 7,
-          "minItems": 1,
-          "type": "array",
-          "uniqueItems": true
-        }
-      },
-      "required": [
-        "value",
-        "assurance"
-      ],
-      "type": "object"
-    },
-    "identityStandards": {
-      "items": {
-        "maxLength": 100,
-        "pattern": "^(?:\\S+\\s+){0,9}\\S+$",
-        "type": "string"
-      },
-      "maxItems": 10,
-      "minItems": 0,
-      "type": "array"
-    },
-    "incidentDefinitionPublished": {
-      "properties": {
-        "assurance": {
-          "enum": [
-            "Service provider assertion",
-            "Independent validation of assertion"
-          ]
-        },
-        "value": {
-          "type": "boolean"
-        }
-      },
-      "required": [
-        "value",
-        "assurance"
-      ],
-      "type": "object"
-    },
-    "incidentEscalation": {
-      "type": "boolean"
-    },
-    "incidentManagementProcess": {
-      "properties": {
-        "assurance": {
-          "enum": [
-            "Service provider assertion",
-            "Independent validation of assertion"
-          ]
-        },
-        "value": {
-          "type": "boolean"
-        }
-      },
-      "required": [
-        "value",
-        "assurance"
-      ],
-      "type": "object"
-    },
-    "incidentManagementReporting": {
-      "properties": {
-        "assurance": {
-          "enum": [
-            "Service provider assertion",
-            "Independent validation of assertion"
-          ]
-        },
-        "value": {
-          "type": "boolean"
-        }
-      },
-      "required": [
-        "value",
-        "assurance"
-      ],
-      "type": "object"
-    },
-    "legalJurisdiction": {
-      "properties": {
-        "assurance": {
-          "enum": [
-            "Service provider assertion",
-            "Contractual commitment",
-            "Independent validation of assertion"
-          ]
-        },
-        "value": {
-          "enum": [
-            "UK",
-            "EU",
-            "Other countries with data protection treaties",
-            "Rest of world"
-          ]
-        }
-      },
-      "required": [
-        "value",
-        "assurance"
-      ],
-      "type": "object"
-    },
-    "minimumContractPeriod": {
-      "enum": [
-        "Hour",
-        "Day",
-        "Month",
-        "Year",
-        "Other"
-      ]
-    },
-    "networksConnected": {
-      "items": {
-        "enum": [
-          "Internet",
-          "Public Services Network (PSN)",
-          "Police National Network (PNN)",
-          "New NHS Network (N3)",
-          "Joint Academic Network (JANET)",
-          "Other"
-        ]
-      },
-      "maxItems": 6,
-      "minItems": 1,
-      "type": "array",
-      "uniqueItems": true
-    },
-    "offlineWorking": {
-      "type": "boolean"
-    },
-    "openSource": {
-      "type": "boolean"
-    },
-    "openStandardsSupported": {
-      "type": "boolean"
-    },
-    "otherConsumers": {
-      "properties": {
-        "assurance": {
-          "enum": [
-            "Service provider assertion",
-            "Contractual commitment",
-            "Independent validation of assertion"
-          ]
-        },
-        "value": {
-          "enum": [
-            "No other consumer",
-            "Only government consumers",
-            "A specific consumer group, eg Police, Defence or Health",
-            "Anyone - public"
-          ]
-        }
-      },
-      "required": [
-        "value",
-        "assurance"
-      ],
-      "type": "object"
-    },
-    "persistentStorage": {
-      "type": "boolean"
-    },
-    "personnelSecurityChecks": {
-      "properties": {
-        "assurance": {
-          "enum": [
-            "Service provider assertion",
-            "Independent validation of assertion"
-          ]
-        },
-        "value": {
-          "items": {
-            "enum": [
-              "Security clearance national vetting (SC)",
-              "Baseline personnel security standard (BPSS)",
-              "Background checks in accordance with BS7858:2012",
-              "Employment checks"
-            ]
-          },
-          "maxItems": 4,
-          "minItems": 1,
-          "type": "array",
-          "uniqueItems": true
-        }
-      },
-      "required": [
-        "value",
-        "assurance"
-      ],
-      "type": "object"
-    },
-    "priceInterval": {
-      "enum": [
-        "",
-        "Second",
-        "Minute",
-        "Hour",
-        "Day",
-        "Week",
-        "Month",
-        "Quarter",
-        "6 months",
-        "Year"
-      ]
-    },
-    "priceMax": {
-      "pattern": "^$|^\\d{1,15}(?:\\.\\d{1,5})?$",
-      "type": "string"
-    },
-    "priceMin": {
-      "pattern": "^\\d{1,15}(?:\\.\\d{1,5})?$",
-      "type": "string"
-    },
-    "priceUnit": {
-      "enum": [
-        "Unit",
-        "Person",
-        "Licence",
-        "User",
-        "Device",
-        "Instance",
-        "Server",
-        "Virtual machine",
-        "Transaction",
-        "Megabyte",
-        "Gigabyte",
-        "Terabyte"
-      ]
-    },
-    "pricingDocumentURL": {
-      "format": "uri",
-      "type": "string"
-    },
-    "provisioningTime": {
-      "maxLength": 200,
-      "minLength": 1,
-      "pattern": "^(?:\\S+\\s+){0,19}\\S+$",
-      "type": "string"
-    },
-    "restrictAdministratorPermissions": {
-      "properties": {
-        "assurance": {
-          "enum": [
-            "Service provider assertion",
-            "Independent validation of assertion",
-            "Independent testing of implementation"
-          ]
-        },
-        "value": {
-          "type": "boolean"
-        }
-      },
-      "required": [
-        "value",
-        "assurance"
-      ],
-      "type": "object"
-    },
-    "secureConfigurationManagement": {
-      "properties": {
-        "assurance": {
-          "enum": [
-            "Service provider assertion",
-            "Independent validation of assertion"
-          ]
-        },
-        "value": {
-          "type": "boolean"
-        }
-      },
-      "required": [
-        "value",
-        "assurance"
-      ],
-      "type": "object"
-    },
-    "secureDesign": {
-      "properties": {
-        "assurance": {
-          "enum": [
-            "Service provider assertion",
-            "Independent validation of assertion"
-          ]
-        },
-        "value": {
-          "type": "boolean"
-        }
-      },
-      "required": [
-        "value",
-        "assurance"
-      ],
-      "type": "object"
-    },
-    "secureDevelopment": {
-      "properties": {
-        "assurance": {
-          "enum": [
-            "Service provider assertion",
-            "Independent validation of assertion"
-          ]
-        },
-        "value": {
-          "type": "boolean"
-        }
-      },
-      "required": [
-        "value",
-        "assurance"
-      ],
-      "type": "object"
-    },
-    "selfServiceProvisioning": {
-      "type": "boolean"
-    },
-    "serviceAvailabilityPercentage": {
-      "properties": {
-        "assurance": {
-          "enum": [
-            "Service provider assertion",
-            "Contractual commitment",
-            "Independent validation of assertion"
-          ]
-        },
-        "value": {
-          "exclusiveMaximum": true,
-          "maximum": 100,
-          "minimum": 0,
-          "type": "number"
-        }
-      },
-      "required": [
-        "value",
-        "assurance"
-      ],
-      "type": "object"
-    },
-    "serviceBenefits": {
-      "items": {
-        "maxLength": 100,
-        "pattern": "^(?:\\S+\\s+){0,9}\\S+$",
-        "type": "string"
-      },
-      "maxItems": 10,
-      "minItems": 1,
-      "type": "array"
-    },
-    "serviceDefinitionDocumentURL": {
-      "format": "uri",
-      "type": "string"
-    },
-    "serviceFeatures": {
-      "items": {
-        "maxLength": 100,
-        "pattern": "^(?:\\S+\\s+){0,9}\\S+$",
-        "type": "string"
-      },
-      "maxItems": 10,
-      "minItems": 1,
-      "type": "array"
-    },
-    "serviceManagementModel": {
-      "properties": {
-        "assurance": {
-          "enum": [
-            "Service provider assertion",
-            "Independent validation of assertion"
-          ]
-        },
-        "value": {
-          "items": {
-            "enum": [
-              "Dedicated devices on a segregated network",
-              "Dedicated devices for community service management",
-              "Dedicated devices for multiple community service management",
-              "Service management via bastion hosts",
-              "Direct service management"
+              "2 factor authentication",
+              "TLS client certification",
+              "Identity federation with existing provider (eg Google apps)",
+              "Limited access over community network (eg PSN)",
+              "Username/password"
             ]
           },
           "maxItems": 5,
@@ -779,16 +33,491 @@
       ],
       "type": "object"
     },
+    "accessSecurityDetails": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
+      "type": "string"
+    },
+    "analyticsApplicationMetrics": {
+      "type": "boolean"
+    },
+    "analyticsApplicationMetricsDetail": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
+      "type": "string"
+    },
+    "analyticsNetworkMetrics": {
+      "type": "boolean"
+    },
+    "analyticsNetworkMetricsDetail": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
+      "type": "string"
+    },
+    "analyticsOther": {
+      "type": "boolean"
+    },
+    "analyticsOtherDetail": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
+      "type": "string"
+    },
+    "analyticsReporting": {
+      "items": {
+        "enum": [
+          "Real-time dashboards",
+          "Regular published reports"
+        ]
+      },
+      "maxItems": 2,
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "cloudBackupManual": {
+      "type": "boolean"
+    },
+    "cloudBackupManualDetails": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
+      "type": "string"
+    },
+    "cloudBackupScheduled": {
+      "type": "boolean"
+    },
+    "cloudBackupScheduledDetails": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
+      "type": "string"
+    },
+    "cloudBackupSupport": {
+      "type": "boolean"
+    },
+    "cloudBackupSupportDetails": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
+      "type": "string"
+    },
+    "cloudDisasterDetails": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
+      "type": "string"
+    },
+    "cloudPersistent": {
+      "items": {
+        "enum": [
+          "Real-time dashboards",
+          "Regular published reports"
+        ]
+      },
+      "maxItems": 2,
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "cloudRecoverSelfservice": {
+      "type": "boolean"
+    },
+    "cloudRecoverSelfserviceDetails": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
+      "type": "string"
+    },
+    "cloudRecoverSupport": {
+      "type": "boolean"
+    },
+    "cloudRecoverSupportDetails": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
+      "type": "string"
+    },
+    "cloudScaleAutomatic": {
+      "type": "boolean"
+    },
+    "cloudScaleAutomaticDetails": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
+      "type": "string"
+    },
+    "cloudScaleSelfservice": {
+      "type": "boolean"
+    },
+    "cloudScaleSelfserviceDetails": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
+      "type": "string"
+    },
+    "cloudScaleSupport": {
+      "type": "boolean"
+    },
+    "cloudScaleSupportDetails": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
+      "type": "string"
+    },
+    "dataCentreSecurity": {
+      "enum": [
+        "Yes",
+        "No"
+      ]
+    },
+    "dataCentreSecurityDetails": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
+      "type": "string"
+    },
+    "dataExtraction": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
+      "type": "string"
+    },
+    "devicesWithAccess": {
+      "properties": {
+        "assurance": {
+          "enum": [
+            "Service provider assertion",
+            "Contractual commitment",
+            "Independent validation of assertion"
+          ]
+        },
+        "value": {
+          "items": {
+            "enum": [
+              "Only devices under control of the service provider",
+              "Partner managed devices under some provider control (ie via contracts etc)",
+              "Any device"
+            ]
+          },
+          "maxItems": 3,
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "value",
+        "assurance"
+      ],
+      "type": "object"
+    },
+    "devolved": {
+      "type": "boolean"
+    },
+    "devolvedDetails": {
+      "items": {
+        "maxLength": 100,
+        "pattern": "^(?:\\S+\\s+){0,9}\\S+$",
+        "type": "string"
+      },
+      "maxItems": 10,
+      "minItems": 1,
+      "type": "array"
+    },
+    "disposeEquipment": {
+      "enum": [
+        "Proprietary techniques used",
+        "A recognised standard for equipment disposal is followed",
+        "A third-party destruction service is used"
+      ]
+    },
+    "disposeEquipmentDetails": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
+      "type": "string"
+    },
+    "govWan": {
+      "items": {
+        "enum": [
+          "Public Services Network (PSN)",
+          "Police National Network (PNN)",
+          "New NHS Network (N3)",
+          "Joint Academic Network (JANET)"
+        ]
+      },
+      "maxItems": 4,
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "guidance": {
+      "items": {
+        "enum": [
+          "HTML",
+          "PDF",
+          "ODF",
+          "Other",
+          "None"
+        ]
+      },
+      "maxItems": 5,
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "interfaceApi": {
+      "type": "boolean"
+    },
+    "interfaceApiDetail": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
+      "type": "string"
+    },
+    "interfaceCommandLine": {
+      "type": "boolean"
+    },
+    "interfaceCommandLineDetail": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
+      "type": "string"
+    },
+    "interfaceOther": {
+      "type": "boolean"
+    },
+    "interfaceOtherDetail": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
+      "type": "string"
+    },
+    "interfaceWeb": {
+      "type": "boolean"
+    },
+    "interfaceWebDetail": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
+      "type": "string"
+    },
+    "locationAndLegalJurisdiction": {
+      "enum": [
+        "Unknown processing and storage locations",
+        "Known locations for storage only",
+        "Known locations for storage, processing and management"
+      ]
+    },
+    "managePhysicalResilience": {
+      "items": {
+        "enum": [
+          "The service provider commits to a service level agreement (SLA)",
+          "Review of historical data",
+          "Analysis of the design"
+        ]
+      },
+      "maxItems": 3,
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "managePhysicalResilienceDetails": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
+      "type": "string"
+    },
+    "offboarding": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
+      "type": "string"
+    },
+    "onboarding": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
+      "type": "string"
+    },
+    "penTestingFrequency": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
+      "type": "string"
+    },
+    "protectDataAtRest": {
+      "items": {
+        "enum": [
+          "Physical access control",
+          "Scale, obfuscation techniques or data storage sharding",
+          "Encryption of all physical media"
+        ]
+      },
+      "maxItems": 3,
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "protectDataAtRestDetails": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
+      "type": "string"
+    },
+    "protectDataInTransit": {
+      "items": {
+        "enum": [
+          "Private WAN service",
+          "Legacy SSL and TLS (under 1.2)*",
+          "TLS (Version 1.2 or above)",
+          "IPsec or TLS VPN gateway",
+          "Bonded fibre optic connections"
+        ]
+      },
+      "maxItems": 5,
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "provisionApi": {
+      "type": "boolean"
+    },
+    "provisionApiDetails": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
+      "type": "string"
+    },
+    "provisionCommandline": {
+      "type": "boolean"
+    },
+    "provisionCommandlineDetails": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
+      "type": "string"
+    },
+    "provisionOther": {
+      "type": "boolean"
+    },
+    "provisionOtherDetails": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
+      "type": "string"
+    },
+    "provisionWeb": {
+      "type": "boolean"
+    },
+    "provisionWebDetails": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
+      "type": "string"
+    },
+    "sanatiseData": {
+      "enum": [
+        "No",
+        "Assurances media can\u2019t be directly addressed",
+        "Explicit overwriting of storage before reallocation"
+      ]
+    },
+    "sanatiseDataDetails": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
+      "type": "string"
+    },
+    "secureServiceAdministration": {
+      "properties": {
+        "assurance": {
+          "enum": [
+            "Service provider assertion",
+            "Contractual commitment",
+            "Independent validation of assertion"
+          ]
+        },
+        "value": {
+          "items": {
+            "enum": [
+              "Dedicated device on segregated network (providers own provision)",
+              "Dedicated device on community network (eg PSN)",
+              "Dedicated device over multiple services/networks",
+              "Via bastion host",
+              "Direct administration"
+            ]
+          },
+          "maxItems": 5,
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "value",
+        "assurance"
+      ],
+      "type": "object"
+    },
+    "secureServiceAdministrationDetails": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
+      "type": "string"
+    },
+    "separationOfUsers": {
+      "items": {
+        "enum": [
+          "Virtualisation technologies (eg a hypervisor) provide separation between users",
+          "Other software provides separation between users"
+        ]
+      },
+      "maxItems": 2,
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "separationOfUsersDetails": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
+      "type": "string"
+    },
+    "serviceBenefits": {
+      "items": {
+        "maxLength": 100,
+        "pattern": "^(?:\\S+\\s+){0,9}\\S+$",
+        "type": "string"
+      },
+      "maxItems": 10,
+      "minItems": 1,
+      "type": "array"
+    },
+    "serviceConstraints": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
+      "type": "string"
+    },
+    "serviceFeatures": {
+      "items": {
+        "maxLength": 100,
+        "pattern": "^(?:\\S+\\s+){0,9}\\S+$",
+        "type": "string"
+      },
+      "maxItems": 10,
+      "minItems": 1,
+      "type": "array"
+    },
     "serviceName": {
       "maxLength": 100,
       "minLength": 1,
       "type": "string"
-    },
-    "serviceOffboarding": {
-      "type": "boolean"
-    },
-    "serviceOnboarding": {
-      "type": "boolean"
     },
     "serviceSummary": {
       "maxLength": 500,
@@ -828,291 +557,70 @@
       "type": "array",
       "uniqueItems": true
     },
-    "servicesManagementSeparation": {
-      "properties": {
-        "assurance": {
-          "enum": [
-            "Service provider assertion",
-            "Independent testing of implementation",
-            "Assurance of service design",
-            "CESG-assured components"
-          ]
-        },
-        "value": {
-          "type": "boolean"
-        }
-      },
-      "required": [
-        "value",
-        "assurance"
-      ],
-      "type": "object"
-    },
-    "servicesSeparation": {
-      "properties": {
-        "assurance": {
-          "enum": [
-            "Service provider assertion",
-            "Independent testing of implementation",
-            "Assurance of service design",
-            "CESG-assured components"
-          ]
-        },
-        "value": {
-          "type": "boolean"
-        }
-      },
-      "required": [
-        "value",
-        "assurance"
-      ],
-      "type": "object"
-    },
-    "sfiaRateDocumentURL": {
-      "format": "uri",
-      "type": "string"
-    },
-    "supportAvailability": {
-      "maxLength": 200,
-      "minLength": 1,
-      "pattern": "^(?:\\S+\\s+){0,19}\\S+$",
-      "type": "string"
-    },
-    "supportForThirdParties": {
+    "supportReport": {
       "type": "boolean"
+    },
+    "supportReportDetail": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
+      "type": "string"
     },
     "supportResponseTime": {
-      "maxLength": 200,
+      "maxLength": 500,
       "minLength": 1,
-      "pattern": "^(?:\\S+\\s+){0,19}\\S+$",
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
       "type": "string"
     },
-    "supportTypes": {
-      "items": {
-        "enum": [
-          "Service desk",
-          "Email",
-          "Phone",
-          "Live chat",
-          "Onsite"
-        ]
-      },
-      "maxItems": 5,
-      "minItems": 1,
-      "type": "array",
-      "uniqueItems": true
+    "supportTypesEmail": {
+      "type": "boolean"
     },
-    "supportedBrowsers": {
-      "items": {
-        "enum": [
-          "Internet Explorer 6",
-          "Internet Explorer 7",
-          "Internet Explorer 8",
-          "Internet Explorer 9",
-          "Internet Explorer 10+",
-          "Microsoft Edge",
-          "Firefox",
-          "Chrome",
-          "Safari",
-          "Opera"
-        ]
-      },
-      "maxItems": 10,
-      "minItems": 1,
-      "type": "array",
-      "uniqueItems": true
-    },
-    "supportedDevices": {
-      "items": {
-        "enum": [
-          "PC",
-          "Mac",
-          "Smartphone",
-          "Tablet"
-        ]
-      },
-      "maxItems": 4,
-      "minItems": 1,
-      "type": "array",
-      "uniqueItems": true
-    },
-    "termsAndConditionsDocumentURL": {
-      "format": "uri",
+    "supportTypesEmailDetail": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
       "type": "string"
     },
-    "thirdPartyComplianceMonitoring": {
-      "properties": {
-        "assurance": {
-          "enum": [
-            "Service provider assertion",
-            "Independent validation of assertion"
-          ]
-        },
-        "value": {
-          "type": "boolean"
-        }
-      },
-      "required": [
-        "value",
-        "assurance"
-      ],
-      "type": "object"
-    },
-    "thirdPartyDataSharingInformation": {
-      "properties": {
-        "assurance": {
-          "enum": [
-            "Service provider assertion",
-            "Independent validation of assertion"
-          ]
-        },
-        "value": {
-          "type": "boolean"
-        }
-      },
-      "required": [
-        "value",
-        "assurance"
-      ],
-      "type": "object"
-    },
-    "thirdPartyRiskAssessment": {
-      "properties": {
-        "assurance": {
-          "enum": [
-            "Service provider assertion",
-            "Independent validation of assertion"
-          ]
-        },
-        "value": {
-          "type": "boolean"
-        }
-      },
-      "required": [
-        "value",
-        "assurance"
-      ],
-      "type": "object"
-    },
-    "thirdPartySecurityRequirements": {
-      "properties": {
-        "assurance": {
-          "enum": [
-            "Service provider assertion",
-            "Independent validation of assertion"
-          ]
-        },
-        "value": {
-          "type": "boolean"
-        }
-      },
-      "required": [
-        "value",
-        "assurance"
-      ],
-      "type": "object"
-    },
-    "trainingProvided": {
-      "properties": {
-        "assurance": {
-          "enum": [
-            "Service provider assertion",
-            "Independent validation of assertion"
-          ]
-        },
-        "value": {
-          "type": "boolean"
-        }
-      },
-      "required": [
-        "value",
-        "assurance"
-      ],
-      "type": "object"
-    },
-    "trialOption": {
+    "supportTypesPhone": {
       "type": "boolean"
     },
-    "userAccessControlManagement": {
-      "properties": {
-        "assurance": {
-          "enum": [
-            "Service provider assertion",
-            "Independent validation of assertion",
-            "Independent testing of implementation"
-          ]
-        },
-        "value": {
-          "type": "boolean"
-        }
-      },
-      "required": [
-        "value",
-        "assurance"
-      ],
-      "type": "object"
+    "supportTypesPhoneDetail": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
+      "type": "string"
     },
-    "userAuthenticateManagement": {
-      "properties": {
-        "assurance": {
-          "enum": [
-            "Service provider assertion",
-            "Independent validation of assertion",
-            "Independent testing of implementation"
-          ]
-        },
-        "value": {
-          "type": "boolean"
-        }
-      },
-      "required": [
-        "value",
-        "assurance"
-      ],
-      "type": "object"
-    },
-    "userAuthenticateSupport": {
-      "properties": {
-        "assurance": {
-          "enum": [
-            "Service provider assertion",
-            "Independent validation of assertion",
-            "Independent testing of implementation"
-          ]
-        },
-        "value": {
-          "type": "boolean"
-        }
-      },
-      "required": [
-        "value",
-        "assurance"
-      ],
-      "type": "object"
-    },
-    "vatIncluded": {
+    "supportTypesWebchat": {
       "type": "boolean"
     },
-    "vendorCertifications": {
-      "items": {
-        "maxLength": 100,
-        "pattern": "^(?:\\S+\\s+){0,9}\\S+$",
-        "type": "string"
-      },
-      "maxItems": 10,
-      "minItems": 0,
-      "type": "array"
+    "supportTypesWebchatDetail": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
+      "type": "string"
     },
-    "vulnerabilityAssessment": {
+    "usersAccessAuditInformation": {
       "properties": {
         "assurance": {
           "enum": [
             "Service provider assertion",
+            "Contractual commitment",
             "Independent validation of assertion"
           ]
         },
         "value": {
-          "type": "boolean"
+          "items": {
+            "enum": [
+              "None",
+              "By negotiation",
+              "Available via 3rd parties",
+              "Available self-service"
+            ]
+          },
+          "maxItems": 4,
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
         }
       },
       "required": [
@@ -1121,161 +629,99 @@
       ],
       "type": "object"
     },
-    "vulnerabilityMitigationPrioritisation": {
-      "properties": {
-        "assurance": {
-          "enum": [
-            "Service provider assertion",
-            "Independent validation of assertion"
-          ]
-        },
-        "value": {
-          "type": "boolean"
-        }
-      },
-      "required": [
-        "value",
-        "assurance"
-      ],
-      "type": "object"
-    },
-    "vulnerabilityMonitoring": {
-      "properties": {
-        "assurance": {
-          "enum": [
-            "Service provider assertion",
-            "Independent validation of assertion"
-          ]
-        },
-        "value": {
-          "type": "boolean"
-        }
-      },
-      "required": [
-        "value",
-        "assurance"
-      ],
-      "type": "object"
-    },
-    "vulnerabilityTimescales": {
-      "properties": {
-        "assurance": {
-          "enum": [
-            "Service provider assertion",
-            "Independent validation of assertion"
-          ]
-        },
-        "value": {
-          "type": "boolean"
-        }
-      },
-      "required": [
-        "value",
-        "assurance"
-      ],
-      "type": "object"
-    },
-    "vulnerabilityTracking": {
-      "properties": {
-        "assurance": {
-          "enum": [
-            "Service provider assertion",
-            "Independent validation of assertion"
-          ]
-        },
-        "value": {
-          "type": "boolean"
-        }
-      },
-      "required": [
-        "value",
-        "assurance"
-      ],
-      "type": "object"
+    "usersAccessAuditInformationDetails": {
+      "maxLength": 500,
+      "minLength": 1,
+      "pattern": "^(?:\\S+\\s+){0,49}\\S+$",
+      "type": "string"
     }
   },
   "required": [
-    "analyticsAvailable",
-    "apiAccess",
-    "auditInformationProvided",
-    "changeImpactAssessment",
-    "cloudDeploymentModel",
-    "dataAtRestProtections",
-    "dataBackupRecovery",
-    "dataExtractionRemoval",
-    "dataManagementLocations",
-    "dataProtectionBetweenUserAndService",
-    "dataSecureDeletion",
-    "datacentreLocations",
-    "datacentreProtectionDisclosure",
-    "datacentreTier",
-    "datacentresEUCode",
-    "datacentresSpecifyLocation",
-    "deprovisioningTime",
-    "deviceAccessMethod",
-    "educationPricing",
-    "elasticCloud",
-    "eventMonitoring",
-    "freeOption",
-    "governanceFramework",
-    "guaranteedResources",
-    "identityAuthenticationControls",
-    "incidentDefinitionPublished",
-    "incidentEscalation",
-    "incidentManagementProcess",
-    "incidentManagementReporting",
-    "legalJurisdiction",
-    "minimumContractPeriod",
-    "networksConnected",
-    "offlineWorking",
-    "openSource",
-    "openStandardsSupported",
-    "otherConsumers",
-    "persistentStorage",
-    "personnelSecurityChecks",
-    "priceMin",
-    "priceUnit",
-    "pricingDocumentURL",
-    "provisioningTime",
-    "restrictAdministratorPermissions",
-    "secureConfigurationManagement",
-    "secureDesign",
-    "secureDevelopment",
-    "selfServiceProvisioning",
-    "serviceAvailabilityPercentage",
+    "accessSecurity",
+    "accessSecurityDetails",
+    "analyticsApplicationMetrics",
+    "analyticsApplicationMetricsDetail",
+    "analyticsNetworkMetrics",
+    "analyticsNetworkMetricsDetail",
+    "analyticsOther",
+    "analyticsOtherDetail",
+    "analyticsReporting",
+    "cloudBackupManual",
+    "cloudBackupManualDetails",
+    "cloudBackupScheduled",
+    "cloudBackupScheduledDetails",
+    "cloudBackupSupport",
+    "cloudBackupSupportDetails",
+    "cloudDisasterDetails",
+    "cloudPersistent",
+    "cloudRecoverSelfservice",
+    "cloudRecoverSelfserviceDetails",
+    "cloudRecoverSupport",
+    "cloudRecoverSupportDetails",
+    "cloudScaleAutomatic",
+    "cloudScaleAutomaticDetails",
+    "cloudScaleSelfservice",
+    "cloudScaleSelfserviceDetails",
+    "cloudScaleSupport",
+    "cloudScaleSupportDetails",
+    "dataCentreSecurity",
+    "dataCentreSecurityDetails",
+    "dataExtraction",
+    "devicesWithAccess",
+    "devolved",
+    "devolvedDetails",
+    "disposeEquipment",
+    "disposeEquipmentDetails",
+    "govWan",
+    "guidance",
+    "interfaceApi",
+    "interfaceApiDetail",
+    "interfaceCommandLine",
+    "interfaceCommandLineDetail",
+    "interfaceOther",
+    "interfaceOtherDetail",
+    "interfaceWeb",
+    "interfaceWebDetail",
+    "locationAndLegalJurisdiction",
+    "managePhysicalResilience",
+    "managePhysicalResilienceDetails",
+    "offboarding",
+    "onboarding",
+    "penTestingFrequency",
+    "protectDataAtRest",
+    "protectDataAtRestDetails",
+    "protectDataInTransit",
+    "provisionApi",
+    "provisionApiDetails",
+    "provisionCommandline",
+    "provisionCommandlineDetails",
+    "provisionOther",
+    "provisionOtherDetails",
+    "provisionWeb",
+    "provisionWebDetails",
+    "sanatiseData",
+    "sanatiseDataDetails",
+    "secureServiceAdministration",
+    "secureServiceAdministrationDetails",
+    "separationOfUsers",
+    "separationOfUsersDetails",
     "serviceBenefits",
-    "serviceDefinitionDocumentURL",
+    "serviceConstraints",
     "serviceFeatures",
-    "serviceManagementModel",
     "serviceName",
-    "serviceOffboarding",
-    "serviceOnboarding",
     "serviceSummary",
     "serviceTypes",
-    "servicesManagementSeparation",
-    "servicesSeparation",
-    "supportAvailability",
-    "supportForThirdParties",
+    "supportReport",
+    "supportReportDetail",
     "supportResponseTime",
-    "supportTypes",
-    "supportedBrowsers",
-    "supportedDevices",
-    "termsAndConditionsDocumentURL",
-    "thirdPartyComplianceMonitoring",
-    "thirdPartyDataSharingInformation",
-    "thirdPartyRiskAssessment",
-    "thirdPartySecurityRequirements",
-    "trainingProvided",
-    "trialOption",
-    "userAccessControlManagement",
-    "userAuthenticateManagement",
-    "userAuthenticateSupport",
-    "vatIncluded",
-    "vulnerabilityAssessment",
-    "vulnerabilityMitigationPrioritisation",
-    "vulnerabilityMonitoring",
-    "vulnerabilityTimescales",
-    "vulnerabilityTracking"
+    "supportTypesEmail",
+    "supportTypesEmailDetail",
+    "supportTypesPhone",
+    "supportTypesPhoneDetail",
+    "supportTypesWebchat",
+    "supportTypesWebchatDetail",
+    "usersAccessAuditInformation",
+    "usersAccessAuditInformationDetails"
   ],
   "title": "G-Cloud 9 SaaS Service Schema",
   "type": "object"
