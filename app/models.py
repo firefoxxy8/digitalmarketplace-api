@@ -7,13 +7,13 @@ from flask_sqlalchemy import BaseQuery
 from six import string_types, iteritems
 
 from sqlalchemy import asc, desc
-from sqlalchemy import func
+from sqlalchemy import func, inspect
 from sqlalchemy.dialects.postgresql import JSON, INTERVAL
 from sqlalchemy.ext.declarative import declared_attr
 from sqlalchemy.ext.hybrid import hybrid_property
-from sqlalchemy.orm import validates, backref, mapper
+from sqlalchemy.orm import validates, backref, mapper, column_property
 from sqlalchemy.orm.session import Session
-from sqlalchemy.sql.expression import case as sql_case, cast as sql_cast, select as sql_select
+from sqlalchemy.sql.expression import case as sql_case, cast as sql_cast, select as sql_select, exists as sql_exists, and_
 from sqlalchemy.types import String
 from sqlalchemy import Sequence
 from sqlalchemy_utils import generic_relationship
@@ -336,6 +336,7 @@ class SupplierFramework(db.Model):
     framework = db.relationship(Framework, lazy='joined', innerjoin=True)
 
     # vvvv current_framework_agreement defined further down (after FrameworkAgreement) vvvv
+    # vvvv applied defined further down (after DraftService) vvvv
 
     @validates('declaration')
     def validates_declaration(self, key, value):
@@ -454,6 +455,9 @@ class SupplierFramework(db.Model):
                 "countersignedPath": None,
                 "agreementStatus": None
             })
+
+        if "applied" not in inspect(self).unloaded:
+            supplier_framework["applied"] = self.applied
 
         if with_users:
             if (supplier_framework.get("agreementDetails") or {}).get("uploaderUserId"):
@@ -977,6 +981,20 @@ class DraftService(db.Model, ServiceTableMixin):
 
     def get_link(self):
         return url_for(".fetch_draft_service", draft_id=self.id)
+
+
+# here we're using a column_property to define SupplierFramework.applied instead of a hybrid_property as this gives
+# us the flexibility of being able to eager-load the value if necessary. We also (I don't _think_) get any advantage
+# from hybrid_property as it's a property we'd have to hit the database to determine even if we had a fully loaded
+# SupplierFramework.
+SupplierFramework.applied = column_property(
+    sql_exists().where(and_(
+        DraftService.supplier_id == SupplierFramework.supplier_id,
+        DraftService.framework_id == SupplierFramework.framework_id,
+        DraftService.status.in_(("submitted", "failed",)),
+    )).correlate_except(DraftService),
+    deferred=True,
+)
 
 
 class AuditEvent(db.Model):
