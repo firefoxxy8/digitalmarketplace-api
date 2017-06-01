@@ -1149,7 +1149,6 @@ class Brief(db.Model):
     framework_id = db.Column(db.Integer, db.ForeignKey('frameworks.id'), nullable=False)
     _lot_id = db.Column("lot_id", db.Integer, db.ForeignKey('lots.id'), nullable=False)
     is_a_copy = db.Column(db.Boolean, nullable=False, server_default=sql_false())
-
     data = db.Column(JSON, nullable=False)
     created_at = db.Column(db.DateTime, index=True, nullable=False,
                            default=datetime.utcnow)
