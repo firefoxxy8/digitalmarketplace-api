@@ -1148,7 +1148,6 @@ class Brief(db.Model):
 
     framework_id = db.Column(db.Integer, db.ForeignKey('frameworks.id'), nullable=False)
     _lot_id = db.Column("lot_id", db.Integer, db.ForeignKey('lots.id'), nullable=False)
-    copied_from_brief_id = db.Column(db.Integer, db.ForeignKey('briefs.id'), nullable=True)
     is_a_copy = db.Column(db.Boolean, nullable=False, server_default=sql_false())
 
     data = db.Column(JSON, nullable=False)
@@ -1309,7 +1308,7 @@ class Brief(db.Model):
 
         return Brief(
             data=data,
-            copied_from_brief_id=self.id,
+            is_a_copy=True,
             framework=framework,
             lot=self.lot,
             users=self.users
@@ -1359,8 +1358,8 @@ class Brief(db.Model):
                 'withdrawnAt': self.withdrawn_at.strftime(DATETIME_FORMAT)
             })
 
-        if self.copied_from_brief_id:
-            data.update({'copiedFromBriefId': self.copied_from_brief_id})
+        if self.is_a_copy:
+            data.update({'isACopy': self.is_a_copy})
 
         data['links'] = {
             'self': url_for('.get_brief', brief_id=self.id),
