@@ -208,15 +208,15 @@ paths:
       required: true
       description: 'Example: `/agreements/32`'
     get:
-      summary: SUMMARY
+      summary: See a supplier agreement.
       description: |-
-        DESCRIPTION
+        See a supplier agreement.
       tags:
       - Agreements
       parameters: []
       responses:
         '200':
-          description: DESCRIPTION
+          description: Supplier agreement viewed succesfully.
           content:
             application/json:
               schema:
@@ -328,26 +328,6 @@ paths:
                   value:
                     agreement:
                       frameworkSlug: example-framework
-                      id: 19
-                      signedAgreementDetails:
-                        signerName: name
-                        signerRole: role
-                      status: draft
-                      supplierId: 700018
-                9:
-                  summary: DESCRIPTION
-                  value:
-                    agreement:
-                      frameworkSlug: example-framework
-                      id: 20
-                      signedAgreementPath: /example.pdf
-                      status: draft
-                      supplierId: 700019
-                10:
-                  summary: DESCRIPTION
-                  value:
-                    agreement:
-                      frameworkSlug: example-framework
                       id: 21
                       signedAgreementDetails:
                         signerName: name
@@ -355,7 +335,7 @@ paths:
                       signedAgreementPath: /example.pdf
                       status: draft
                       supplierId: 700020
-                11:
+                9:
                   summary: DESCRIPTION
                   value:
                     agreement:
@@ -370,7 +350,7 @@ paths:
                       signedAgreementReturnedAt: '2016-10-01T01:01:01.000000Z'
                       status: countersigned
                       supplierId: 700029
-                12:
+                10:
                   summary: DESCRIPTION
                   value:
                     agreement:
@@ -404,213 +384,13 @@ paths:
                       signedAgreementReturnedAt: '2016-10-01T00:00:00.000000Z'
                       status: countersigned
                       supplierId: 700053
-                15:
-                  summary: DESCRIPTION
-                  value:
-                    agreement:
-                      countersignedAgreementPath: /path/to/countersigned/document
-                      countersignedAgreementReturnedAt: '2016-10-02T00:00:00.000000Z'
-                      frameworkSlug: example-framework
-                      id: 54
-                      signedAgreementReturnedAt: '2016-10-01T00:00:00.000000Z'
-                      status: countersigned
-                      supplierId: 700053
-                16:
-                  summary: DESCRIPTION
-                  value:
-                    agreement:
-                      frameworkSlug: example-framework
-                      id: 9
-                      status: draft
-                      supplierId: 700004
-                17:
-                  summary: DESCRIPTION
-                  value:
-                    agreement:
-                      frameworkSlug: example-framework
-                      id: 11
-                      status: draft
-                      supplierId: 700010
-                18:
-                  summary: DESCRIPTION
-                  value:
-                    agreement:
-                      frameworkSlug: example-framework
-                      id: 12
-                      signedAgreementDetails:
-                        details: here
-                      status: draft
-                      supplierId: 700011
-                19:
-                  summary: DESCRIPTION
-                  value:
-                    agreement:
-                      frameworkSlug: example-framework
-                      id: 13
-                      signedAgreementDetails:
-                        details: here
-                      signedAgreementPath: path
-                      signedAgreementReturnedAt: '2016-10-01T01:01:01.000000Z'
-                      status: signed
-                      supplierId: 700012
-                20:
-                  summary: DESCRIPTION
-                  value:
-                    agreement:
-                      frameworkSlug: example-framework
-                      id: 14
-                      signedAgreementDetails:
-                        details: here
-                      signedAgreementPath: path
-                      signedAgreementPutOnHoldAt: '2016-11-01T01:01:01.000000Z'
-                      signedAgreementReturnedAt: '2016-10-01T01:01:01.000000Z'
-                      status: on-hold
-                      supplierId: 700013
-                21:
-                  summary: DESCRIPTION
-                  value:
-                    agreement:
-                      countersignedAgreementDetails:
-                        countersigneddetails: here
-                      countersignedAgreementReturnedAt: '2016-11-01T01:01:01.000000Z'
-                      frameworkSlug: example-framework
-                      id: 15
-                      signedAgreementDetails:
-                        details: here
-                      signedAgreementPath: path
-                      signedAgreementReturnedAt: '2016-10-01T01:01:01.000000Z'
-                      status: approved
-                      supplierId: 700014
-                22:
-                  summary: DESCRIPTION
-                  value:
-                    agreement:
-                      countersignedAgreementDetails:
-                        countersigneddetails: here
-                      countersignedAgreementPath: path
-                      countersignedAgreementReturnedAt: '2016-11-01T01:01:01.000000Z'
-                      frameworkSlug: example-framework
-                      id: 16
-                      signedAgreementDetails:
-                        details: here
-                      signedAgreementPath: path
-                      signedAgreementReturnedAt: '2016-10-01T01:01:01.000000Z'
-                      status: countersigned
-                      supplierId: 700015
-                23:
-                  summary: DESCRIPTION
-                  value:
-                    agreement:
-                      countersignedAgreementDetails:
-                        countersigneddetails: here
-                      countersignedAgreementPath: /example.pdf
-                      countersignedAgreementReturnedAt: '2016-11-01T01:01:01.000000Z'
-                      frameworkSlug: example-framework
-                      id: 17
-                      signedAgreementDetails:
-                        details: here
-                      signedAgreementPath: path
-                      signedAgreementReturnedAt: '2016-10-01T01:01:01.000000Z'
-                      status: countersigned
-                      supplierId: 700016
-                24:
-                  summary: DESCRIPTION
-                  value:
-                    agreement:
-                      frameworkSlug: example-framework
-                      id: 19
-                      signedAgreementDetails:
-                        signerName: name
-                        signerRole: role
-                      status: draft
-                      supplierId: 700018
-                25:
-                  summary: DESCRIPTION
-                  value:
-                    agreement:
-                      frameworkSlug: example-framework
-                      id: 20
-                      signedAgreementPath: /example.pdf
-                      status: draft
-                      supplierId: 700019
-                26:
-                  summary: DESCRIPTION
-                  value:
-                    agreement:
-                      frameworkSlug: example-framework
-                      id: 21
-                      signedAgreementDetails:
-                        signerName: name
-                        signerRole: role
-                      signedAgreementPath: /example.pdf
-                      status: draft
-                      supplierId: 700020
-                27:
-                  summary: DESCRIPTION
-                  value:
-                    agreement:
-                      countersignedAgreementPath: countersigned/file.jpg
-                      countersignedAgreementReturnedAt: '2016-11-01T01:01:01.000000Z'
-                      frameworkSlug: example-framework
-                      id: 30
-                      signedAgreementDetails:
-                        signerName: name
-                        signerRole: role
-                      signedAgreementPath: path/file.pdf
-                      signedAgreementReturnedAt: '2016-10-01T01:01:01.000000Z'
-                      status: countersigned
-                      supplierId: 700029
-                28:
-                  summary: DESCRIPTION
-                  value:
-                    agreement:
-                      countersignedAgreementPath: countersigned/file.jpg
-                      countersignedAgreementReturnedAt: '2016-11-01T01:01:01.000000Z'
-                      frameworkSlug: example-framework
-                      id: 31
-                      signedAgreementPath: path/file.pdf
-                      signedAgreementReturnedAt: '2016-10-01T01:01:01.000000Z'
-                      status: countersigned
-                      supplierId: 700030
-                29:
-                  summary: DESCRIPTION
-                  value:
-                    agreement:
-                      countersignedAgreementReturnedAt: '2016-11-01T01:01:01.000000Z'
-                      frameworkSlug: example-framework
-                      id: 33
-                      signedAgreementPath: path/file.pdf
-                      signedAgreementReturnedAt: '2016-10-01T01:01:01.000000Z'
-                      status: approved
-                      supplierId: 700032
-                30:
-                  summary: DESCRIPTION
-                  value:
-                    agreement:
-                      countersignedAgreementPath: /path/to/countersigned/document
-                      countersignedAgreementReturnedAt: '2016-10-02T00:00:00.000000Z'
-                      frameworkSlug: example-framework
-                      id: 54
-                      signedAgreementReturnedAt: '2016-10-01T00:00:00.000000Z'
-                      status: countersigned
-                      supplierId: 700053
-                31:
-                  summary: DESCRIPTION
-                  value:
-                    agreement:
-                      countersignedAgreementPath: /path/to/countersigned/document
-                      countersignedAgreementReturnedAt: '2016-10-02T00:00:00.000000Z'
-                      frameworkSlug: example-framework
-                      id: 54
-                      signedAgreementReturnedAt: '2016-10-01T00:00:00.000000Z'
-                      status: countersigned
-                      supplierId: 700053
+
       security:
       - apikey: []
     post:
-      summary: SUMMARY
+      summary: Update supplier agreement.
       description: |-
-        DESCRIPTION
+        Update supplier agreement.
       tags:
       - Agreements
       parameters: []
@@ -654,98 +434,27 @@ paths:
                 summary: DESCRIPTION
                 value:
                   agreement:
-                    signedAgreementDetails:
-                      signerName: name
-                      signerRole: role
-                    signedAgreementPath: /example.pdf
+                    signedAgreementDetails: {}
                   updated_by: interested@example.com
               4:
                 summary: DESCRIPTION
                 value:
                   agreement:
-                    signedAgreementDetails: {}
+                    countersignedAgreementPath: countersigned/file.jpg
                   updated_by: interested@example.com
               5:
                 summary: DESCRIPTION
                 value:
                   agreement:
-                    countersignedAgreementPath: countersigned/file.jpg
+                    countersignedAgreementPath: null
                   updated_by: interested@example.com
               6:
                 summary: DESCRIPTION
                 value:
                   agreement:
-                    countersignedAgreementPath: countersigned/file.jpg
-                  updated_by: interested@example.com
-              7:
-                summary: DESCRIPTION
-                value:
-                  agreement:
-                    countersignedAgreementPath: null
-                  updated_by: interested@example.com
-              8:
-                summary: DESCRIPTION
-                value:
-                  agreement:
-                    signedAgreementDetails:
-                      signerName: name
-                      signerRole: role
-                  updated_by: interested@example.com
-              9:
-                summary: DESCRIPTION
-                value:
-                  agreement:
-                    signedAgreementPath: /example.pdf
-                  updated_by: interested@example.com
-              10:
-                summary: DESCRIPTION
-                value:
-                  agreement:
-                    signedAgreementDetails:
-                      signerName: name
-                      signerRole: role
-                    signedAgreementPath: /example.pdf
-                  updated_by: interested@example.com
-              11:
-                summary: DESCRIPTION
-                value:
-                  agreement:
-                    signedAgreementDetails:
-                      signerName: name
-                      signerRole: role
-                    signedAgreementPath: /example.pdf
-                  updated_by: interested@example.com
-              12:
-                summary: DESCRIPTION
-                value:
-                  agreement:
-                    signedAgreementDetails: {}
-                  updated_by: interested@example.com
-              13:
-                summary: DESCRIPTION
-                value:
-                  agreement:
-                    countersignedAgreementPath: countersigned/file.jpg
-                  updated_by: interested@example.com
-              14:
-                summary: DESCRIPTION
-                value:
-                  agreement:
-                    countersignedAgreementPath: countersigned/file.jpg
-                  updated_by: interested@example.com
-              15:
-                summary: DESCRIPTION
-                value:
-                  agreement:
-                    countersignedAgreementPath: null
-                  updated_by: interested@example.com
-              16:
-                summary: DESCRIPTION
-                value:
-                  agreement:
                     signedAgreementPath: /path-to-g-cloud-7.pdf
                   updated_by: example
-              17:
+              7:
                 summary: DESCRIPTION
                 value:
                   agreement:
@@ -754,7 +463,7 @@ paths:
                       signerRole: job_1
                     signedAgreementPath: path/to/agreement/1.pdf
                   updated_by: example
-              18:
+              8:
                 summary: DESCRIPTION
                 value:
                   agreement:
@@ -763,103 +472,13 @@ paths:
                       signerRole: job_2
                     signedAgreementPath: path/to/agreement/2.pdf
                   updated_by: example
-              19:
-                summary: DESCRIPTION
-                value:
-                  agreement:
-                    signedAgreementDetails:
-                      signerName: name_3
-                      signerRole: job_3
-                    signedAgreementPath: path/to/agreement/3.pdf
-                  updated_by: example
-              20:
-                summary: DESCRIPTION
-                value:
-                  agreement:
-                    signedAgreementDetails:
-                      signerName: name_4
-                      signerRole: job_4
-                    signedAgreementPath: path/to/agreement/4.pdf
-                  updated_by: example
-              21:
-                summary: DESCRIPTION
-                value:
-                  agreement:
-                    signedAgreementDetails:
-                      signerName: name_5
-                      signerRole: job_5
-                    signedAgreementPath: path/to/agreement/5.pdf
-                  updated_by: example
-              22:
-                summary: DESCRIPTION
-                value:
-                  agreement:
-                    signedAgreementDetails:
-                      signerName: name_6
-                      signerRole: job_6
-                    signedAgreementPath: path/to/agreement/6.pdf
-                  updated_by: example
-              23:
-                summary: DESCRIPTION
-                value:
-                  agreement:
-                    signedAgreementDetails:
-                      signerName: name_7
-                      signerRole: job_7
-                    signedAgreementPath: path/to/agreement/7.pdf
-                  updated_by: example
-              24:
-                summary: DESCRIPTION
-                value:
-                  agreement:
-                    signedAgreementDetails:
-                      signerName: name_8
-                      signerRole: job_8
-                    signedAgreementPath: path/to/agreement/8.pdf
-                  updated_by: example
-              25:
-                summary: DESCRIPTION
-                value:
-                  agreement:
-                    signedAgreementDetails:
-                      signerName: name_9
-                      signerRole: job_9
-                    signedAgreementPath: path/to/agreement/9.pdf
-                  updated_by: example
-              26:
-                summary: DESCRIPTION
-                value:
-                  agreement:
-                    signedAgreementDetails:
-                      signerName: name_10
-                      signerRole: job_10
-                    signedAgreementPath: path/to/agreement/10.pdf
-                  updated_by: example
-              27:
+              9:
                 summary: DESCRIPTION
                 value:
                   agreement:
                     countersignedAgreementPath: path/to/countersigned7.pdf
                   updated_by: example
-              28:
-                summary: DESCRIPTION
-                value:
-                  agreement:
-                    countersignedAgreementPath: path/to/countersigned8.pdf
-                  updated_by: example
-              29:
-                summary: DESCRIPTION
-                value:
-                  agreement:
-                    countersignedAgreementPath: path/to/countersigned9.pdf
-                  updated_by: example
-              30:
-                summary: DESCRIPTION
-                value:
-                  agreement:
-                    countersignedAgreementPath: path/to/countersigned10.pdf
-                  updated_by: example
-              31:
+              10:
                 summary: DESCRIPTION
                 value:
                   agreement:
@@ -867,109 +486,34 @@ paths:
                       signerName: name
                       signerRole: role
                   updated_by: interested@example.com
-              32:
+              11:
                 summary: DESCRIPTION
                 value:
                   agreement:
                     frameworkAgreementVersion: v23.4
                   updated_by: interested@example.com
-              33:
+              12:
                 summary: DESCRIPTION
                 value:
                   agreement:
                     signedAgreementReturnedAt: '2013-13-13T00:00:00.000000Z'
                   updated_by: interested@example.com
-              34:
-                summary: DESCRIPTION
-                value:
-                  agreement:
-                    signedAgreementPath: /example.pdf
-                  updated_by: interested@example.com
-              35:
+              13:
                 summary: DESCRIPTION
                 value:
                   agreement:
                     signedRandomKey: banana
                   updated_by: interested@example.com
-              36:
-                summary: DESCRIPTION
-                value:
-                  agreement:
-                    signedAgreementDetails:
-                      randomKey: value
-                      signerName: name
-                  updated_by: interested@example.com
-              37:
-                summary: DESCRIPTION
-                value:
-                  agreement:
-                    signedAgreementDetails:
-                      signerName: ''
-                      signerRole: ''
-                  updated_by: interested@example.com
-              38:
-                summary: DESCRIPTION
-                value:
-                  agreement:
-                    countersignedAgreementPath: countersigned/file.jpg
-                  updated_by: interested@example.com
-              39:
-                summary: DESCRIPTION
-                value:
-                  agreement:
-                    signedAgreementDetails:
-                      signerName: name
-                      signerRole: role
-                  updated_by: interested@example.com
-              40:
+              14:
                 summary: DESCRIPTION
                 value:
                   agreement:
                     frameworkAgreementVersion: v23.4
                   updated_by: interested@example.com
-              41:
-                summary: DESCRIPTION
-                value:
-                  agreement:
-                    signedAgreementReturnedAt: '2013-13-13T00:00:00.000000Z'
-                  updated_by: interested@example.com
-              42:
-                summary: DESCRIPTION
-                value:
-                  agreement:
-                    signedAgreementPath: /example.pdf
-                  updated_by: interested@example.com
-              43:
-                summary: DESCRIPTION
-                value:
-                  agreement:
-                    signedRandomKey: banana
-                  updated_by: interested@example.com
-              44:
-                summary: DESCRIPTION
-                value:
-                  agreement:
-                    signedAgreementDetails:
-                      randomKey: value
-                      signerName: name
-                  updated_by: interested@example.com
-              45:
-                summary: DESCRIPTION
-                value:
-                  agreement:
-                    signedAgreementDetails:
-                      signerName: ''
-                      signerRole: ''
-                  updated_by: interested@example.com
-              46:
-                summary: DESCRIPTION
-                value:
-                  agreement:
-                    countersignedAgreementPath: countersigned/file.jpg
-                  updated_by: interested@example.com
+
       responses:
         '200':
-          description: DESCRIPTION
+          description: Supplier agreement updated succesfully
           content:
             application/json:
               schema:
@@ -1015,22 +559,10 @@ paths:
                   value:
                     agreement:
                       frameworkSlug: example-framework
-                      id: 22
-                      signedAgreementDetails:
-                        signerName: name
-                        signerRole: role
-                      signedAgreementPath: /example.pdf
-                      status: draft
-                      supplierId: 700021
-                4:
-                  summary: DESCRIPTION
-                  value:
-                    agreement:
-                      frameworkSlug: example-framework
                       id: 28
                       status: draft
                       supplierId: 700027
-                5:
+                4:
                   summary: DESCRIPTION
                   value:
                     agreement:
@@ -1045,7 +577,7 @@ paths:
                       signedAgreementReturnedAt: '2016-10-01T01:01:01.000000Z'
                       status: countersigned
                       supplierId: 700029
-                6:
+                5:
                   summary: DESCRIPTION
                   value:
                     agreement:
@@ -1057,7 +589,7 @@ paths:
                       signedAgreementReturnedAt: '2016-10-01T01:01:01.000000Z'
                       status: countersigned
                       supplierId: 700030
-                7:
+                6:
                   summary: DESCRIPTION
                   value:
                     agreement:
@@ -1068,7 +600,7 @@ paths:
                       signedAgreementReturnedAt: '2016-10-01T01:01:01.000000Z'
                       status: approved
                       supplierId: 700032
-                8:
+                7:
                   summary: DESCRIPTION
                   value:
                     agreement:
@@ -1079,7 +611,7 @@ paths:
                         signerRole: role
                       status: draft
                       supplierId: 700018
-                9:
+                8:
                   summary: DESCRIPTION
                   value:
                     agreement:
@@ -1088,7 +620,7 @@ paths:
                       signedAgreementPath: /example.pdf
                       status: draft
                       supplierId: 700019
-                10:
+                9:
                   summary: DESCRIPTION
                   value:
                     agreement:
@@ -1100,27 +632,7 @@ paths:
                       signedAgreementPath: /example.pdf
                       status: draft
                       supplierId: 700020
-                11:
-                  summary: DESCRIPTION
-                  value:
-                    agreement:
-                      frameworkSlug: example-framework
-                      id: 22
-                      signedAgreementDetails:
-                        signerName: name
-                        signerRole: role
-                      signedAgreementPath: /example.pdf
-                      status: draft
-                      supplierId: 700021
-                12:
-                  summary: DESCRIPTION
-                  value:
-                    agreement:
-                      frameworkSlug: example-framework
-                      id: 28
-                      status: draft
-                      supplierId: 700027
-                13:
+                10:
                   summary: DESCRIPTION
                   value:
                     agreement:
@@ -1135,7 +647,7 @@ paths:
                       signedAgreementReturnedAt: '2016-10-01T01:01:01.000000Z'
                       status: countersigned
                       supplierId: 700029
-                14:
+                11:
                   summary: DESCRIPTION
                   value:
                     agreement:
@@ -1147,7 +659,7 @@ paths:
                       signedAgreementReturnedAt: '2016-10-01T01:01:01.000000Z'
                       status: countersigned
                       supplierId: 700030
-                15:
+                12:
                   summary: DESCRIPTION
                   value:
                     agreement:
@@ -1158,7 +670,7 @@ paths:
                       signedAgreementReturnedAt: '2016-10-01T01:01:01.000000Z'
                       status: approved
                       supplierId: 700032
-                16:
+                13:
                   summary: DESCRIPTION
                   value:
                     agreement:
@@ -1167,7 +679,7 @@ paths:
                       signedAgreementPath: /path-to-g-cloud-7.pdf
                       status: draft
                       supplierId: 0
-                17:
+                14:
                   summary: DESCRIPTION
                   value:
                     agreement:
@@ -1179,115 +691,7 @@ paths:
                       signedAgreementPath: path/to/agreement/1.pdf
                       status: draft
                       supplierId: 1
-                18:
-                  summary: DESCRIPTION
-                  value:
-                    agreement:
-                      frameworkSlug: g-cloud-8
-                      id: 57
-                      signedAgreementDetails:
-                        signerName: name_2
-                        signerRole: job_2
-                      signedAgreementPath: path/to/agreement/2.pdf
-                      status: draft
-                      supplierId: 2
-                19:
-                  summary: DESCRIPTION
-                  value:
-                    agreement:
-                      frameworkSlug: g-cloud-8
-                      id: 58
-                      signedAgreementDetails:
-                        signerName: name_3
-                        signerRole: job_3
-                      signedAgreementPath: path/to/agreement/3.pdf
-                      status: draft
-                      supplierId: 3
-                20:
-                  summary: DESCRIPTION
-                  value:
-                    agreement:
-                      frameworkSlug: g-cloud-8
-                      id: 59
-                      signedAgreementDetails:
-                        signerName: name_4
-                        signerRole: job_4
-                      signedAgreementPath: path/to/agreement/4.pdf
-                      status: draft
-                      supplierId: 4
-                21:
-                  summary: DESCRIPTION
-                  value:
-                    agreement:
-                      frameworkSlug: g-cloud-8
-                      id: 60
-                      signedAgreementDetails:
-                        signerName: name_5
-                        signerRole: job_5
-                      signedAgreementPath: path/to/agreement/5.pdf
-                      status: draft
-                      supplierId: 5
-                22:
-                  summary: DESCRIPTION
-                  value:
-                    agreement:
-                      frameworkSlug: g-cloud-8
-                      id: 61
-                      signedAgreementDetails:
-                        signerName: name_6
-                        signerRole: job_6
-                      signedAgreementPath: path/to/agreement/6.pdf
-                      status: draft
-                      supplierId: 6
-                23:
-                  summary: DESCRIPTION
-                  value:
-                    agreement:
-                      frameworkSlug: g-cloud-8
-                      id: 62
-                      signedAgreementDetails:
-                        signerName: name_7
-                        signerRole: job_7
-                      signedAgreementPath: path/to/agreement/7.pdf
-                      status: draft
-                      supplierId: 7
-                24:
-                  summary: DESCRIPTION
-                  value:
-                    agreement:
-                      frameworkSlug: g-cloud-8
-                      id: 63
-                      signedAgreementDetails:
-                        signerName: name_8
-                        signerRole: job_8
-                      signedAgreementPath: path/to/agreement/8.pdf
-                      status: draft
-                      supplierId: 8
-                25:
-                  summary: DESCRIPTION
-                  value:
-                    agreement:
-                      frameworkSlug: g-cloud-8
-                      id: 64
-                      signedAgreementDetails:
-                        signerName: name_9
-                        signerRole: job_9
-                      signedAgreementPath: path/to/agreement/9.pdf
-                      status: draft
-                      supplierId: 9
-                26:
-                  summary: DESCRIPTION
-                  value:
-                    agreement:
-                      frameworkSlug: g-cloud-8
-                      id: 65
-                      signedAgreementDetails:
-                        signerName: name_10
-                        signerRole: job_10
-                      signedAgreementPath: path/to/agreement/10.pdf
-                      status: draft
-                      supplierId: 10
-                27:
+                15:
                   summary: DESCRIPTION
                   value:
                     agreement:
@@ -1306,63 +710,7 @@ paths:
                       signedAgreementReturnedAt: '2016-11-30T04:00:00.000000Z'
                       status: countersigned
                       supplierId: 7
-                28:
-                  summary: DESCRIPTION
-                  value:
-                    agreement:
-                      countersignedAgreementDetails:
-                        approvedByUserId: 321
-                      countersignedAgreementPath: path/to/countersigned8.pdf
-                      countersignedAgreementReturnedAt: '2016-11-30T07:00:00.000000Z'
-                      frameworkSlug: g-cloud-8
-                      id: 63
-                      signedAgreementDetails:
-                        frameworkAgreementVersion: v1.0
-                        signerName: name_8
-                        signerRole: job_8
-                        uploaderUserId: 123
-                      signedAgreementPath: path/to/agreement/8.pdf
-                      signedAgreementReturnedAt: '2016-11-30T03:00:00.000000Z'
-                      status: countersigned
-                      supplierId: 8
-                29:
-                  summary: DESCRIPTION
-                  value:
-                    agreement:
-                      countersignedAgreementDetails:
-                        approvedByUserId: 321
-                      countersignedAgreementPath: path/to/countersigned9.pdf
-                      countersignedAgreementReturnedAt: '2016-11-30T06:00:00.000000Z'
-                      frameworkSlug: g-cloud-8
-                      id: 64
-                      signedAgreementDetails:
-                        frameworkAgreementVersion: v1.0
-                        signerName: name_9
-                        signerRole: job_9
-                        uploaderUserId: 123
-                      signedAgreementPath: path/to/agreement/9.pdf
-                      signedAgreementReturnedAt: '2016-11-30T02:00:00.000000Z'
-                      status: countersigned
-                      supplierId: 9
-                30:
-                  summary: DESCRIPTION
-                  value:
-                    agreement:
-                      countersignedAgreementDetails:
-                        approvedByUserId: 321
-                      countersignedAgreementPath: path/to/countersigned10.pdf
-                      countersignedAgreementReturnedAt: '2016-11-30T05:00:00.000000Z'
-                      frameworkSlug: g-cloud-8
-                      id: 65
-                      signedAgreementDetails:
-                        frameworkAgreementVersion: v1.0
-                        signerName: name_10
-                        signerRole: job_10
-                        uploaderUserId: 123
-                      signedAgreementPath: path/to/agreement/10.pdf
-                      signedAgreementReturnedAt: '2016-11-30T01:00:00.000000Z'
-                      status: countersigned
-                      supplierId: 10
+
         '400':
           description: DESCRIPTION
           content:
@@ -7748,15 +7096,15 @@ paths:
       - apikey: []
   /brief-responses:
     get:
-      summary: SUMMARY
+      summary: See responses to a brief
       description: |-
-        DESCRIPTION
+        See responses to a brief
       tags:
       - Brief-responses
       parameters: []
       responses:
         '200':
-          description: DESCRIPTION
+          description: Brief responses viewed succesfully.
           content:
             application/json:
               schema:
@@ -63851,4 +63199,3 @@ paths:
                     error: '''supplierId'' is required for users with ''supplier'' role'
       security:
       - apikey: []
-
