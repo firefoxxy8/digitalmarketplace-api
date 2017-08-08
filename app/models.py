@@ -1349,8 +1349,9 @@ class Brief(db.Model):
         data = dict(self.data.items())
 
         data.update({
+            'awardedBriefResponseId': 14278,
             'id': self.id,
-            'status': self.status,
+            'status': "awarded",
             'frameworkSlug': self.framework.slug,
             'frameworkFramework': self.framework.framework,
             'frameworkName': self.framework.name,
@@ -1489,6 +1490,7 @@ class BriefResponse(db.Model):
         parent_brief = self.brief.serialize()
         parent_brief_fields = ['id', 'title', 'status', 'applicationsClosedAt', 'frameworkSlug']
         data.update({
+            "awardDetails": {"awardedContractStartDate": "2017-08-21T11:09:28.054129Z", "awardedContractValue": 20000},
             'id': self.id,
             'brief': {key: parent_brief[key] for key in parent_brief_fields if key in parent_brief},
             'briefId': self.brief_id,
