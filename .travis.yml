@@ -13,7 +13,6 @@ before_script:
   - psql -c 'create database digitalmarketplace_test;' -U postgres
 script:
   - make test
-  - check_tests
 after_success:
   - coveralls
 notifications:

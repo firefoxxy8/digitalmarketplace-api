@@ -59,6 +59,7 @@ test-migrations: virtualenv
 .PHONY: test-unit
 test-unit: virtualenv
 	${VIRTUALENV_ROOT}/bin/py.test --cov=tests --cov=app --cov-report=term-missing ${PYTEST_ARGS}
+	${VIRTUALENV_ROOT}/bin/check_tests
 
 .PHONY: docker-build
 docker-build:
