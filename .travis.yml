@@ -12,7 +12,8 @@ install:
 before_script:
   - psql -c 'create database digitalmarketplace_test;' -U postgres
 script:
-  - PYTEST_ARGS='--cov=app --cov-report=term-missing' make test
+  - make test
+  - check_tests
 after_success:
   - coveralls
 notifications:
