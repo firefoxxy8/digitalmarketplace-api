@@ -1,8 +1,8 @@
 # TODO split this file into per-functional-area modules
-
-from datetime import datetime
-
 import re
+from datetime import datetime
+from uuid import uuid4
+
 import sqlalchemy.dialects.postgresql
 from flask import current_app
 from flask_sqlalchemy import BaseQuery
@@ -28,7 +28,7 @@ from sqlalchemy_utils import generic_relationship
 
 from dmutils.dates import get_publishing_dates
 from dmutils.formats import DATETIME_FORMAT
-from .. import db
+from .. import db, encryption
 from ..models.buyer_domains import BuyerEmailDomain
 from app.utils import (
     drop_foreign_fields,
@@ -860,6 +860,19 @@ class User(db.Model):
             user['supplier'] = supplier
 
         return user
+
+    def obfuscate(self):
+        """This method needs to remove all personal data from this object."""
+        self.active = False
+
+        self.name = '<obfuscated>'
+        self.phone_number = '<obfuscated>'
+        if self.role == 'buyer' or self.role in self.ADMIN_ROLES:
+            self.email_address = re.sub('.+?\@', '<obfuscated>@', self.email_address)
+        else:
+            self.email_address = '<obfuscated>@{uuid}.com'.format(uuid=str(uuid4()))
+        self.password = encryption.hashpw(uuid4())
+        self.user_research_opted_in = False
 
 
 class ServiceTableMixin(object):
