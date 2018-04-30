@@ -238,6 +238,35 @@ def update_user(user_id):
         db.session.rollback()
         abort(400, "Could not update user with: {0}".format(user_update))
 
+@main.route('/users/<int:user_id>/obfuscate', methods=['POST'])
+def obfuscate_user(user_id):
+    """ Obfuscate a user. Looks user up in DB, and obfuscates personal data.
+
+    This should be used to completely remove a user from the Marketplace. Their account will no longer be accessible.
+    This is useful for our retention strategy (3 years) ad for right to be forgotten requests.
+    """
+    update_details = validate_and_return_updater_request()
+
+    user = User.query.filter(
+        User.id == user_id
+    ).first_or_404()
+    user.obfuscate()
+
+    audit = AuditEvent(
+        audit_type=AuditTypes.obfuscate_user,
+        user=update_details,
+        db_object=user
+    )
+
+    db.session.add(user)
+    db.session.add(audit)
+
+    try:
+        db.session.commit()
+        return single_result_response(RESOURCE_NAME, user), 200
+    except (IntegrityError, DataError):
+        db.session.rollback()
+        abort(400, "Could not obfuscate user with: ID {0}".format(user.id))
 
 @main.route('/users/export/<framework_slug>', methods=['GET'])
 def export_users_for_framework(framework_slug):
