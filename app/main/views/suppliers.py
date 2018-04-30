@@ -271,6 +271,36 @@ def update_contact_information(supplier_id, contact_id):
 
     return single_result_response("contactInformation", contact), 200
 
+@main.route('/suppliers/<int:supplier_id>/contact-information/<int:contact_id>/obfuscate', methods=['POST'])
+def obfuscate_contact_information(supplier_id, contact_id):
+    """Obfuscate a contat information entry. Looks contact information up in DB, and obfuscates personal data.
+
+    This should be used to completely remove contact_information from the Marketplace.
+    This is useful for our retention strategy (3 years) ad for right to be forgotten requests.
+    """
+    update_details = validate_and_return_updater_request()
+
+    contact_information = ContactInformation.query.filter(
+        ContactInformation.supplier_id == supplier_id,
+        ContactInformation.id == contact_id
+    ).first_or_404()
+    contact_information.obfuscate()
+
+    audit = AuditEvent(
+        audit_type=AuditTypes.obfuscate_contact_information,
+        user=update_details,
+        db_object=contact_information
+    )
+
+    db.session.add(contact_information)
+    db.session.add(audit)
+
+    try:
+        db.session.commit()
+        return single_result_response("contactInformation", contact_information), 200
+    except (IntegrityError, DataError):
+        db.session.rollback()
+        abort(400, "Could not obfuscate contact information: supplier_id {}, id {}".format(supplier_id, contact_id))
 
 @main.route('/suppliers/<int:supplier_id>/frameworks/<framework_slug>/declaration', methods=['PUT'])
 def set_a_declaration(supplier_id, framework_slug):
