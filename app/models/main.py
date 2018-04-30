@@ -276,6 +276,14 @@ class ContactInformation(db.Model):
 
         return filter_null_value_fields(serialized)
 
+    def obfuscate(self):
+        self.contact_name = '<obfuscated>'
+        self.phone_number = '<obfuscated>'
+        self.email = '<obfuscated>'
+        self.address1 = '<obfuscated>'
+        self.city = '<obfuscated>'
+        self.postcode = '<obfuscated>'
+
 
 class Supplier(db.Model):
     __tablename__ = 'suppliers'
