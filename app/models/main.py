@@ -54,6 +54,24 @@ class JSON(sqlalchemy.dialects.postgresql.JSON):
         super(JSON, self).__init__(none_as_null=True, astext_type=astext_type)
 
 
+class ObfuscateModel:
+    """This should be added to classes we wish to obfuscate personal data from."""
+    obfuscated = db.Column(db.Boolean, index=False, unique=False, nullable=False, default=False)
+
+    @validates('obfuscated')
+    def validate_obfuscated(self, key, value):
+        if self.obfuscated:
+            raise ValidationError("Cannot update an obfuscated user")
+        return value
+
+    def obfuscate(self):
+        """Implement this method obfuscating personal data from the inheriting object.
+
+        It should at some point set the 'obfuscated' flag to True
+        """
+        raise NotImplementedError()
+
+
 class FrameworkLot(db.Model):
     __tablename__ = 'framework_lots'
 
@@ -211,7 +229,7 @@ class Framework(db.Model):
         return '<{}: {} slug={}>'.format(self.__class__.__name__, self.name, self.slug)
 
 
-class ContactInformation(db.Model):
+class ContactInformation(db.Model, ObfuscateModel):
     __tablename__ = 'contact_information'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -277,6 +295,8 @@ class ContactInformation(db.Model):
         return filter_null_value_fields(serialized)
 
     def obfuscate(self):
+        self.obfuscated = True
+
         self.contact_name = '<obfuscated>'
         self.phone_number = '<obfuscated>'
         self.email = '<obfuscated>'
@@ -744,7 +764,7 @@ SupplierFramework.current_framework_agreement = db.relationship(
 )
 
 
-class User(db.Model):
+class User(db.Model, ObfuscateModel):
     __tablename__ = 'users'
 
     ADMIN_ROLES = [
@@ -871,6 +891,7 @@ class User(db.Model):
 
     def obfuscate(self):
         """This method needs to remove all personal data from this object."""
+        self.obfuscated = True
         self.active = False
 
         self.name = '<obfuscated>'
