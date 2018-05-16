@@ -1,13 +1,14 @@
 from datetime import datetime
 from urllib.parse import urljoin
 
-from sqlalchemy.orm import validates
+from sqlalchemy.orm import validates, foreign, remote
+from sqlalchemy.sql.expression import and_ as sql_and, true as sql_true
 from flask import current_app
 
 from app import db
 from app.utils import random_positive_external_id
 from app.url_utils import force_relative_url
-from app.models import User, ValidationError, ArchivedService
+from app.models import User, ValidationError, ArchivedService, ProcessOutcome
 
 from dmutils.formats import DATETIME_FORMAT
 
@@ -24,6 +25,24 @@ class DirectAwardProject(db.Model):
     active = db.Column(db.Boolean, default=True, nullable=False)
 
     users = db.relationship(User, secondary='direct_award_project_users', order_by=lambda: DirectAwardProjectUser.id)
+    active_search = db.relationship(
+        "DirectAwardSearch",
+        primaryjoin=lambda: (sql_and(
+            foreign(DirectAwardProject.id) == remote(DirectAwardSearch.project_id),
+            remote(DirectAwardSearch.active) == sql_true(),
+        )),
+        viewonly=True,
+        uselist=False,
+    )
+    process_outcome = db.relationship(
+        "ProcessOutcome",
+        primaryjoin=lambda: (sql_and(
+            foreign(DirectAwardProject.id) == remote(ProcessOutcome.direct_award_project_id),
+            remote(ProcessOutcome.completed_at).isnot(None),
+        )),
+        viewonly=True,
+        uselist=False,
+    )
 
     def serialize(self, with_users=False):
         data = {
@@ -81,7 +100,7 @@ class DirectAwardSearch(db.Model):
     archived_services = db.relationship(ArchivedService, secondary='direct_award_search_result_entries',
                                         order_by=lambda: DirectAwardSearchResultEntry.id, lazy='dynamic')
 
-    project = db.relationship(DirectAwardProject)
+    project = db.relationship(DirectAwardProject, backref="searches")
     user = db.relationship(User)
 
     __table_args__ = (

@@ -13,7 +13,7 @@ from sqlalchemy import func
 from sqlalchemy.dialects.postgresql import INTERVAL
 from sqlalchemy.ext.declarative import declared_attr
 from sqlalchemy.ext.hybrid import hybrid_property
-from sqlalchemy.orm import validates, backref, mapper
+from sqlalchemy.orm import validates, backref, mapper, foreign, remote
 from sqlalchemy.orm.session import Session
 from sqlalchemy.sql.expression import (
     case as sql_case,
@@ -1317,6 +1317,16 @@ class Brief(db.Model):
         uselist=False,
         lazy='joined',
         viewonly=True
+    )
+
+    process_outcome = db.relationship(
+        "ProcessOutcome",
+        primaryjoin=lambda: (sql_and(
+            foreign(Brief.id) == remote(ProcessOutcome.brief_id),
+            remote(ProcessOutcome.completed_at).isnot(None),
+        )),
+        viewonly=True,
+        uselist=False,
     )
 
     @validates('users')
