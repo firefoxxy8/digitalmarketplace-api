@@ -164,7 +164,8 @@ class Framework(db.Model):
             'id': self.id,
             'name': self.name,
             'slug': self.slug,
-            'framework': self.framework,
+            'framework': self.framework,  # TODO: Deprecated; replaced by `family`
+            'family': self.framework,
             'status': self.status,
             'clarificationQuestionsOpen': self.clarification_questions_open,
             'lots': [lot.serialize() for lot in self.lots],
@@ -581,7 +582,8 @@ class SupplierFramework(db.Model):
             "supplierId": self.supplier_id,
             "supplierName": self.supplier.name,
             "frameworkSlug": self.framework.slug,
-            'frameworkFramework': self.framework.framework,
+            'frameworkFramework': self.framework.framework,  # TODO: Deprecated; replaced by frameworkFamily
+            'frameworkFamily': self.framework.framework,
             "onFramework": self.on_framework,
             "agreedVariations": agreed_variations,
             "prefillDeclarationFromFrameworkSlug": (
@@ -979,7 +981,7 @@ class ServiceTableMixin(object):
         data = drop_foreign_fields(value, [
             'id', 'status',
             'supplierId', 'supplierName',
-            'frameworkSlug', 'frameworkFramework', 'frameworkName', 'frameworkStatus',
+            'frameworkSlug', 'frameworkFramework', 'frameworkFamily', 'frameworkName', 'frameworkStatus',
             'lot', 'lotSlug', 'lotName',
             'updatedAt', 'createdAt', 'links', 'copiedToFollowingFramework'
         ])
@@ -1002,6 +1004,7 @@ class ServiceTableMixin(object):
             'supplierName': self.supplier.name,
             'frameworkSlug': self.framework.slug,
             'frameworkFramework': self.framework.framework,
+            'frameworkFamily': self.framework.framework,
             'frameworkName': self.framework.name,
             'frameworkStatus': self.framework.status,
             'lot': self.lot.slug,  # deprecated, use lotSlug instead
@@ -1343,7 +1346,7 @@ class Brief(db.Model):
     def validates_data(self, key, data):
         data = drop_foreign_fields(data, [
             'id',
-            'frameworkSlug', 'frameworkFramework', 'frameworkName', 'frameworkStatus',
+            'frameworkSlug', 'frameworkFramework', 'frameworkFamily', 'frameworkName', 'frameworkStatus',
             'lot', 'lotSlug', 'lotName',
             'updatedAt', 'createdAt', 'links'
         ])
