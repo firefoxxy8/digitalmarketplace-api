@@ -1,6 +1,7 @@
 # TODO split this file into per-functional-area modules
 
 from datetime import datetime
+import decimal
 
 import re
 import sqlalchemy.dialects.postgresql
@@ -2027,6 +2028,32 @@ class ProcessOutcome(db.Model):
         # named as such to be explicit that this includes incomplete "process outcomes"
         backref="process_outcomes_all",
     )
+
+    def update_from_json(self, update_data):
+        award_dict = update_data.get("award", {})
+        if not isinstance(award_dict, dict):
+            raise ValidationError(f"'award' expected to be a dictionary")
+        for k, v in award_dict.items():
+            key_mapping = {
+                "startDate": "start_date",
+                "endDate": "end_date",
+                "awardingOrganisationName": "awarding_organisation_name",
+                "awardValue": "award_value",
+            }
+            if k in key_mapping:
+                if k == "awardValue":
+                    try:
+                        v = decimal.Decimal(v) if v is not None else None
+                    except decimal.InvalidOperation as e:
+                        raise ValidationError(f"Failed to parse {v!r} as decimal for field {k!r}")
+                elif k in ("startDate", "endDate",):
+                    if v is not None:
+                        try:
+                            v = datetime.strptime(v, DATE_FORMAT).date()
+                        except ValueError as e:
+                            raise ValidationError(f"Failed to parse {v!r} as date for field {k!r}: {e.args[0]}")
+
+                setattr(self, key_mapping[k], v)
 
     def serialize(self):
         return {
