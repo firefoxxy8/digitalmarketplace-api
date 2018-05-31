@@ -1927,3 +1927,57 @@ class TestSupplierFrameworkVariation(BaseApplicationTest, FixtureMixin):
         assert audit_events[1].data["update"] == {
             "agreedUserId": 2,
         }
+
+
+class TestSuppliersExport(BaseApplicationTest, FixtureMixin):
+
+    framework_slug = None
+    updater_json = None
+
+    def setup(self):
+        super(TestSuppliersExport, self).setup()
+        self.setup_default_buyer_domain()
+        self.framework_slug = 'digital-outcomes-and-specialists'
+        self.set_framework_status(self.framework_slug, 'open')
+        self.updater_json = {'updated_by': 'Paula'}
+
+    def _set_framework_status(self, status='pending'):
+        self.set_framework_status(self.framework_slug, status)
+
+    def _return_suppliers_export(self):
+        response = self.client.get('/suppliers/export/{}'.format(self.framework_slug))
+        assert response.status_code == 200
+        return response
+
+    def _return_suppliers_export_after_setting_framework_status(self, status='pending'):
+        self._set_framework_status(status)
+        return self._return_suppliers_export()
+
+    def _register_supplier_with_framework(self):
+        response = self.client.put(
+            '/suppliers/{}/frameworks/{}'.format(self.supplier_id, self.framework_slug),
+            data=json.dumps(self.updater_json),
+            content_type='application/json')
+        assert response.status_code == 201
+
+    def _setup_supplier_on_framework(self, post_supplier=True, register_supplier_with_framework=True):
+        if post_supplier:
+            # set the supplier_id to the id of the last supplier created
+            self.supplier_id = self.setup_dummy_suppliers(2)[-1]
+        if register_supplier_with_framework:
+            self._register_supplier_with_framework()
+
+    def test_get_response_when_no_suppliers(self):
+        data = json.loads(self._return_suppliers_export_after_setting_framework_status().get_data())["suppliers"]
+        assert data == []
+
+    def test_400_response_if_bad_framework_name(self):
+        self._setup_supplier_on_framework()
+        response = self.client.get('/suppliers/export/{}'.format('cyber-outcomes-and-cyber-specialists'))
+        assert response.status_code == 400
+
+    def test_400_response_if_framework_is_coming(self):
+        self._setup_supplier_on_framework()
+        self._set_framework_status('coming')
+        response = self.client.get('/suppliers/export/{}'.format(self.framework_slug))
+        assert response.status_code == 400

@@ -88,6 +88,19 @@ def list_suppliers():
         abort(400, 'invalid framework')
 
 
+@main.route('/suppliers/export/<framework_slug>', methods=['GET'])
+def export_suppliers_for_framework(framework_slug):
+    # 400 if framework slug is invalid
+    framework = Framework.query.filter(Framework.slug == framework_slug).first()
+    if not framework:
+        abort(400, 'invalid framework')
+
+    if framework.status == 'coming':
+        abort(400, 'framework not yet open')
+
+    return jsonify(suppliers=[]), 200
+
+
 @main.route('/suppliers/<int:supplier_id>', methods=['GET'])
 def get_supplier(supplier_id):
     supplier = Supplier.query.filter(
